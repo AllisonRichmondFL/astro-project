@@ -1,5 +1,5 @@
 import type { APIContext } from "astro";
-import { getBannerDomain } from "@utils/banner.configs";
+import { getBannerDomain } from "@BANNER/banner.configs";
 import { objectToParams } from "@utils/search";
 
 export async function GET(ctx: APIContext) {

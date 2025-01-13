@@ -1,5 +1,5 @@
 import type { APIContext } from "astro";
-import { getBannerDomain } from "@utils/banner.configs";
+import { getBannerDomain } from "@BANNER/banner.configs";
 
 export function sanitizeContent(obj: any) {
 	if (Array.isArray(obj)) {

@@ -1,5 +1,5 @@
 import type { APIContext } from "astro";
-import { getBannerDomain } from "@utils/banner.configs";
+import { getBannerDomain } from "@BANNER/banner.configs";
 import type { ValueOf } from "node_modules/astro/dist/type-utils";
 
 export interface FooterResponse {

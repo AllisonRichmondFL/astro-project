@@ -1,4 +1,4 @@
-import { getBannerConfigFromHost, getBannerDomain } from "@utils/banner.configs";
+import { getBannerConfigFromHost, getBannerDomain } from "@BANNER/banner.configs";
 import { defineMiddleware, sequence } from "astro:middleware";
 import { middleware } from "astro:i18n";
 

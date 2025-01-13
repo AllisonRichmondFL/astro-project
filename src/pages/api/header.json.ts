@@ -1,5 +1,5 @@
 import type { APIContext } from "astro";
-import { getBannerDomain } from "@utils/banner.configs";
+import { getBannerDomain } from "@BANNER/banner.configs";
 
 export interface HeaderResponse {
 	header: Header[];
@@ -22,14 +22,14 @@ export interface HeaderSection {
 }
 
 export interface Category {
-	"name": string;
-	"hidden": boolean;
-	"expandByDefault"?: boolean;
-	"type": "icons" | "list" | "promoLinks";
-	"links": Link[];
+	name: string;
+	hidden: boolean;
+	expandByDefault?: boolean;
+	type: "icons" | "list" | "promoLinks";
+	links: Link[];
 	"sub-categories": unknown[];
-	"style"?: string;
-	"linkPath"?: string;
+	style?: string;
+	linkPath?: string;
 }
 
 export interface Link {
