@@ -49,6 +49,32 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## 💪 Upgrade to the latest version
+
+[Upgrade to the latest version](https://docs.astro.build/en/upgrade-astro/#upgrade-to-the-latest-version)
+
+```bash
+npx @astrojs/upgrade
+```
+
+## 🚚 Deployment
+
+[Deploy to MS Azure](https://docs.astro.build/en/guides/deploy/microsoft-azure/)
+
+### Node
+
+[Node integrations guide](https://docs.astro.build/en/guides/integrations-guide/node/)
+
+## ✍️ CMS integrations
+
+[Use a CMS with Astro](https://docs.astro.build/en/guides/cms/)
+
+## 🧪 Testing
+
+[Testing Guide](https://docs.astro.build/en/guides/testing/)
+
+---
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
