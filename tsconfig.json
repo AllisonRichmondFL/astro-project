@@ -6,7 +6,9 @@
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@BANNER/*": ["src/_foundation/BANNER/*"],
+			"@GLOBAL/*": ["src/_foundation/GLOBAL/*"],
 			"@LOYALTY/*": ["src/_development/LOYALTY/*"],
+			"@NAVIGATION/*": ["src/_development/NAVIGATION/*"],
 			"@PRODUCT/*": ["src/_development/PRODUCT/*"],
 			"@SEARCH/*": ["src/_development/SEARCH/*"],
 			"@utils/*": ["src/utils/*"]

@@ -1,11 +1,8 @@
 ---
-import FooterNav from "@layouts/FooterNav.astro";
-import HeaderNav from "./HeaderNav.astro";
+// import FooterNav from "@NAVIGATION/FooterNav.astro";
 import BannerSetForm from "@BANNER/BannerSetForm.astro";
 import { getBannerFromAstro } from "@utils/banner.configs";
-import config from "astro.config.mjs";
-import BannerName from "@BANNER/BannerName.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import Header from "@NAVIGATION/Header.astro";
 // import { ViewTransitions } from "astro:transitions";
 
 interface Props {
@@ -15,11 +12,7 @@ interface Props {
 }
 const { canonical, description = "This is an Astro project", title } = Astro.props;
 
-const locales = config?.i18n?.locales!;
-
 const banner = getBannerFromAstro(Astro);
-const locale = Astro.currentLocale ?? Astro.preferredLocale!;
-const homeUrl = getRelativeLocaleUrl(locale, "/");
 ---
 
 <!doctype html>
@@ -38,20 +31,7 @@ const homeUrl = getRelativeLocaleUrl(locale, "/");
 
 	<body>
 		{import.meta.env.DEV && <BannerSetForm />}
-		<header class="px-4 py-2 border-y border-t-blue-600/50 border-b-black/50 bg-blue-900/60">
-			<div class="flex gap-4">
-				<p class="mr-auto">
-					<a href={homeUrl} class="text-inherit">
-						<em>{banner.name}</em>
-						<span class="text-xs">(home)</span>
-					</a>
-				</p>
-
-				<p>Locales: <code>{locales.map(({ path }) => path).join("|")}</code></p>
-				<p>Current Locale: <code>{Astro.params.locale}</code></p>
-			</div>
-		</header>
-		<!-- <HeaderNav /> -->
+		<Header />
 		<slot />
 		<!-- <FooterNav /> -->
 	</body>
