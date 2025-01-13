@@ -13,9 +13,9 @@ const allLocales = config?.i18n?.locales!;
 const languages = banner.languages;
 const locale = Astro.currentLocale ?? Astro.preferredLocale!;
 
-if (Astro.request.method) {
-	console.log("Astro.request.method:", Astro.request.method);
-}
+// if (Astro.request.method) {
+// 	console.log("Astro.request.method:", Astro.request.method);
+// }
 if (Astro.request.method === "POST") {
 	try {
 		const data = await Astro.request.formData();

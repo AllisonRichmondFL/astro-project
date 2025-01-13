@@ -5,30 +5,38 @@ import Card from "@components/Card.astro";
 import MyComponent from "@components/MyComponent.astro";
 import ViewCounter from "@components/ViewCounter.astro";
 import BannerName from "@BANNER/BannerName.astro";
-import config from "astro.config.mjs";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { getBannerFromAstro } from "@BANNER/banner.configs";
 
-const locales = config?.i18n?.locales!;
-const foundLocale = locales.find(({ path }) => path === Astro.params.locale);
+const locale = Astro.params.locale;
 
-const locale = Astro.currentLocale ?? Astro.preferredLocale!;
-const redirectTo = foundLocale ? null : `/${locale}${Astro.url.pathname}`;
+const banner = getBannerFromAstro(Astro);
+const languages = banner.languages;
+const foundLanguage = languages.find((l) => l.lang === locale);
 
-console.log({
-	currentLocale: Astro.currentLocale,
-	preferredLocale: Astro.preferredLocale,
-	// locales,
-	locale: Astro.params.locale,
-	foundLocale,
-	pathname: Astro.url.pathname,
-	redirectTo,
-});
+// const locales = config?.i18n?.locales!;
+// const foundLocale = locales.find(({ path }) => path === locale);
 
-// if (!foundLocale) {
-// 	// return Astro.redirect(redirectTo);
-// }
-const pdpUrl = getRelativeLocaleUrl(locale, "/product/nike-air-force-1-07-le-mens/W2288111.html");
-const aboutUrl = getRelativeLocaleUrl(locale, "/about");
+const currentLocale = Astro.currentLocale ?? Astro.preferredLocale!;
+const redirectTo = foundLanguage ? null : `/${currentLocale}${Astro.url.pathname}`;
+
+if (redirectTo) {
+	console.log({
+		currentLocale: Astro.currentLocale,
+		preferredLocale: Astro.preferredLocale,
+		params: Astro.params,
+		pathname: Astro.url.pathname,
+		// locales,
+		// locale,
+		foundLanguage,
+		redirectTo,
+	});
+	// return Astro.redirect("/404");
+	return Astro.redirect(redirectTo);
+}
+
+const pdpUrl = getRelativeLocaleUrl(currentLocale, "/product/nike-air-force-1-07-le-mens/W2288111.html");
+const aboutUrl = getRelativeLocaleUrl(currentLocale, "/about");
 ---
 
 <Layout title="Welcome to Astro">

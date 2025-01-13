@@ -41,10 +41,12 @@ export default defineConfig({
 			it: "en",
 			// ko: "en",
 		},
-		routing: "manual",
-		// routing: {
-		// 	prefixDefaultLocale: false,
-		// },
+		// routing: "manual", // use with https://docs.astro.build/en/guides/internationalization/#middleware-function
+		routing: {
+			redirectToDefaultLocale: true,
+			prefixDefaultLocale: false,
+			fallbackType: "redirect",
+		},
 	},
 	integrations: [
 		partytown(),

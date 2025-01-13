@@ -1,6 +1,5 @@
 import { getBannerConfigFromHost, getBannerDomain } from "@BANNER/banner.configs";
 import { defineMiddleware, sequence } from "astro:middleware";
-import { middleware } from "astro:i18n";
 
 const SITE_ID_COOKIE = "banner";
 
@@ -63,15 +62,15 @@ const auth = defineMiddleware(async (context, next) => {
 });
 
 const greeting = defineMiddleware(async (context, next) => {
-	console.log("greeting", {
-		url: context.request.url,
-		params: context.params,
-		preferredLocale: context.preferredLocale,
-		preferredLocaleList: context.preferredLocaleList,
-		props: context.props,
-	});
+	// console.log("👋 greeting", {
+	// 	url: context.request.url,
+	// 	params: context.params,
+	// 	preferredLocale: context.preferredLocale,
+	// 	preferredLocaleList: context.preferredLocaleList,
+	// 	props: context.props,
+	// });
 	const response = await next();
-	console.log("greeting response.body", response.body);
+	console.log("👋 greetings! response.body:", response.body);
 	return response;
 });
 
@@ -91,11 +90,6 @@ const sanitize = defineMiddleware(async (_context, next) => {
 // export const onRequest = sequence(validation, auth, sanitize);
 // export const onRequest = sequence(bannerDetection);
 export const onRequest = sequence(
-	// greeting,
+	greeting
 	// bannerDetection,
-	middleware({
-		redirectToDefaultLocale: false,
-		prefixDefaultLocale: true,
-		fallbackType: "redirect",
-	})
 );
