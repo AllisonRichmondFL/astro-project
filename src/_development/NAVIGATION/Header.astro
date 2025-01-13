@@ -13,8 +13,7 @@ const homeUrl = getRelativeLocaleUrl(locale, "/");
 	<div class="flex gap-4 px-4 py-2 border-y border-t-blue-600/50 border-b-black/50 bg-blue-900/60">
 		<p class="mr-auto">
 			<a href={homeUrl} class="text-inherit">
-				<em>{banner.name}</em>
-				<span class="text-xs">(home)</span>
+				<img src={`/${banner.bannerType}/logo.svg`} alt={banner.name} title={`${banner.name} (home)`} height="30" />
 			</a>
 		</p>
 

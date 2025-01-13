@@ -3,12 +3,12 @@
 
 interface Props {
 	bannerName?: string;
+	bannerType?: string;
 	canonical?: string;
 	description?: string;
-	siteId?: string;
 	title: string;
 }
-const { bannerName, canonical, description = "This is an Astro project", siteId, title } = Astro.props;
+const { bannerName, canonical, description = "This is an Astro project", bannerType, title } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,7 +17,8 @@ const { bannerName, canonical, description = "This is an Astro project", siteId,
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={`/${siteId}/favicon.svg`} />
+		<!-- <link rel="icon" type="image/svg+xml" href={`/${bannerType}/favicon.svg`} /> -->
+		<link rel="icon" type="image/png" href={`/${bannerType}/favicon.png`} />
 		<link rel="canonical" href={canonical} />
 		<!-- <meta name="generator" content={Astro.generator} /> -->
 		<title>{title} | {bannerName}</title>

@@ -13,7 +13,7 @@ interface Props {
 const banner = getBannerFromAstro(Astro);
 ---
 
-<Html {...Astro.props} bannerName={banner.name} siteId={banner.siteId}>
+<Html {...Astro.props} bannerName={banner.name} bannerType={banner.bannerType}>
 	{import.meta.env.DEV && <BannerSetForm />}
 
 	<Header />
