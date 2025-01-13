@@ -3,85 +3,24 @@
 import BannerSetForm from "@BANNER/BannerSetForm.astro";
 import { getBannerFromAstro } from "@utils/banner.configs";
 import Header from "@NAVIGATION/Header.astro";
-// import { ViewTransitions } from "astro:transitions";
+import Html from "./Html.astro";
 
 interface Props {
 	canonical?: string;
 	description?: string;
 	title: string;
 }
-const { canonical, description = "This is an Astro project", title } = Astro.props;
-
 const banner = getBannerFromAstro(Astro);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="canonical" href={canonical} />
-		<!-- <meta name="generator" content={Astro.generator} /> -->
-		<title>{title} | {banner.name}</title>
-		<slot name="head" />
-		<!-- <ViewTransitions /> -->
-	</head>
+<Html {...Astro.props} bannerName={banner.name} siteId={banner.siteId}>
+	{import.meta.env.DEV && <BannerSetForm />}
 
-	<body>
-		{import.meta.env.DEV && <BannerSetForm />}
-		<Header />
+	<Header />
+
+	<main class="max-w-screen-xl mx-auto">
 		<slot />
-		<!-- <FooterNav /> -->
-	</body>
-</html>
+	</main>
 
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		font-size: 16px;
-		background: #13151a;
-		background-size: 224px;
-		color: white;
-	}
-	a {
-		color: #7cf;
-	}
-	a:hover {
-		color: #4bf;
-		text-decoration: underline;
-	}
-	main {
-		margin: auto;
-		padding: 1rem;
-		max-width: calc(100% - 2rem);
-		/* width: 800px; */
-		line-height: 1.5;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-</style>
+	<!-- <FooterNav /> -->
+</Html>

@@ -1,0 +1,14 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+interface Props {
+	error: unknown;
+}
+
+const { error } = Astro.props;
+---
+
+<Layout title="404 Page Not Found">
+	<h1 class="text-3xl mb-4">404 | Page not found</h1>
+	<p>{error instanceof Error ? error.message : "Unknown error"}</p>
+</Layout>
