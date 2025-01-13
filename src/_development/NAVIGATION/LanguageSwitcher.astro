@@ -13,6 +13,9 @@ const allLocales = config?.i18n?.locales!;
 const languages = banner.languages;
 const locale = Astro.currentLocale ?? Astro.preferredLocale!;
 
+if (languages.length < 2) {
+	return null;
+}
 // if (Astro.request.method) {
 // 	console.log("Astro.request.method:", Astro.request.method);
 // }
@@ -37,11 +40,11 @@ if (Astro.request.method === "POST") {
 ---
 
 <div class="flex flex-row items-center gap-6">
-	<p class="">Current Locale: <code>{Astro.params.locale}</code></p>
+	<!-- <p class="">Current Locale: <code>{Astro.params.locale}</code></p> -->
 	<details class="relative">
-		<summary>Change locale:</summary>
-		<div class="absolute p-2 bg-neutral-800">
-			<ul class="py-1">
+		<summary class="bg-neutral-500/50x py-1">Change locale: <code>{Astro.params.locale}</code></summary>
+		<div class="absolute left-0 right-0 p-2 bg-neutral-800">
+			<ul class="flex flex-col gap-2">
 				{
 					languages.map((language) => (
 						<li value={language.lang}>
@@ -54,7 +57,7 @@ if (Astro.request.method === "POST") {
 			</ul>
 			<!-- <hr class="my-2" />
 			<em>All locales:</em>
-			<ul class="py-1">
+			<ul class="">
 				{
 					allLocales.map(({ path, codes }) => (
 						<li value={path}>
