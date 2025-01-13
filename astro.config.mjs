@@ -63,5 +63,4 @@ export default defineConfig({
 		"fr-CA": "https://www.footlocker.ca/fr/",
 		"fr-FR": "https://www.footlocker.fr",
 	},
-	trailingSlash: "always",
 });
