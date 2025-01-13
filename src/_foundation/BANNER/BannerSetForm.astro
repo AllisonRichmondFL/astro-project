@@ -26,14 +26,24 @@ const method = undefined; // "POST";
 // }
 ---
 
-<div class="p-2 bg-slate-400 text-slate-950 flex justify-between align-middle">
-	<p class="leading-relaxed">Current Banner: <code>{JSON.stringify(banner.siteId)}</code></p>
+<div
+	class="px-2 bg-slate-900 flex justify-between items-center text-xs transition-opacity opacity-75 hover:opacity-100"
+>
+	<p class="inline">
+		Current Banner: <code>{JSON.stringify(banner.siteId)}</code>
+	</p>
 
-	<form action={action} method={method} class="outline-1 outline-red-500 flex flex-row gap-1">
-		<label for={`select_${SITE_ID}`}>
-			<span class="text-sm opacity-80">Change banner:</span>
-		</label>
-		<select name={SITE_ID} id={`select_${SITE_ID}`} class="text-sm py-[0.3375em] px-2">
+	<p class="opacity-75">
+		<em>(TO DO: add dev toolbar integration for banner-switching)</em>
+	</p>
+
+	<form action={action} method={method} class="flex flex-row items-center">
+		<label for={`select_${SITE_ID}`} class="opacity-80 mr-2"> Change banner: </label>
+		<select
+			name={SITE_ID}
+			id={`select_${SITE_ID}`}
+			class="inline-block p-1 font-inherit bg-neutral-500/40 text-inherit"
+		>
 			{
 				Object.values(banners).map(({ host, siteId }) => (
 					<option value={siteId} selected={siteId === banner.siteId}>
@@ -42,6 +52,9 @@ const method = undefined; // "POST";
 				))
 			}
 		</select>
-		<button class="text-sm py-1 px-2 bg-white" type="submit">→</button>
+		<button
+			class="inline-block py-1 px-1.5 ml-px font-inherit leading-snug bg-neutral-500/40 text-inherit"
+			type="submit">→</button
+		>
 	</form>
 </div>
