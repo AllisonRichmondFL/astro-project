@@ -7,9 +7,7 @@ import Checkbox from "@components/Checkbox.astro";
 
 <Layout title="About my Astro project">
 	<main>
-		<h1 class="my-16"
-			>About <span class="text-gradient">My Project</span></h1
-		>
+		<h1 class="my-16">About <span class="text-gradient">My Project</span></h1>
 		<p>Hey there! Welcome to my Astro project!</p>
 		<p>Here we'll share everything about Astro</p>
 		<SetHtml />
@@ -18,20 +16,18 @@ import Checkbox from "@components/Checkbox.astro";
 		/>
 		<p>Hey there! Welcome to my Astro project!</p>
 		<p>Here we'll share everything about Astro</p>
-		<MyReactComponent className="my-8" />
-		<p>(It was rendered statically like all Astro content)</p>
-		<MyReactComponent
-			className="bg-purple-300 text-black my-12"
-			client:load
-		>
-			"client:load"
+		<MyReactComponent className="my-4"> Static React component </MyReactComponent>
+		<p>(Nothing will happen when you click the button)</p>
+
+		<MyReactComponent className="bg-purple-300 text-black mt-8 mb-4" client:load>
+			React component with <code>client:load</code>
 		</MyReactComponent>
 		<p>Hey there! Welcome to my Astro project!</p>
 		<p>Here we'll share everything about Astro</p>
 		<p>Hey there! Welcome to my Astro project!</p>
 		<p>Here we'll share everything about Astro</p>
 		<p>Hey there! Welcome to my Astro project!</p>
-		<Checkbox label="Checkbox" name="checkbox" class="my-6" />
+		<Checkbox label="Astro Checkbox" name="checkbox" class="my-6" />
 		<p>Here we'll share everything about Astro</p>
 		<p>Hey there! Welcome to my Astro project!</p>
 		<p>Here we'll share everything about Astro</p>
@@ -49,9 +45,11 @@ import Checkbox from "@components/Checkbox.astro";
 		<p>Here we'll share everything about Astro</p>
 		<p>Hey there! Welcome to my Astro project!</p>
 		<p>Here we'll share everything about Astro</p>
-		<MyReactComponent className="my-8" client:visible>
-			"client:visible"
+
+		<MyReactComponent className="my-8 bg-purple-900" client:visible>
+			React component with <code>client:visible</code>
 		</MyReactComponent>
+
 		<p>Hey there! Welcome to my Astro project!</p>
 		<p>Here we'll share everything about Astro</p>
 		<p>Hey there! Welcome to my Astro project!</p>
@@ -60,17 +58,14 @@ import Checkbox from "@components/Checkbox.astro";
 		<p>Here we'll share everything about Astro</p>
 		<p>Hey there! Welcome to my Astro project!</p>
 		<p>Here we'll share everything about Astro</p>
-		<MyReactComponent
-			className="bg-purple-300 text-black my-12"
-			client:only="react"
-		>
-			client:only="react"
+		<MyReactComponent className="bg-purple-300 text-black my-12" client:only="react">
+			React component with <code>client:only="react"</code>
 		</MyReactComponent>
 
 		<hr class="my-8" />
 		<p class="my-4">
-			<a href="/" class="">Go back <strong>Home</strong></a></p
-		>
+			<a href="/" class="">Go back <strong>Home</strong></a>
+		</p>
 	</main>
 </Layout>
 

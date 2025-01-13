@@ -5,6 +5,30 @@ import Card from "@components/Card.astro";
 import MyComponent from "@components/MyComponent.astro";
 import ViewCounter from "@components/ViewCounter.astro";
 import BannerName from "@BANNER/BannerName.astro";
+import config from "astro.config.mjs";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const locales = config?.i18n?.locales!;
+const foundLocale = locales.find(({ path }) => path === Astro.params.locale);
+
+const locale = Astro.currentLocale ?? Astro.preferredLocale!;
+const redirectTo = foundLocale ? null : `/${locale}${Astro.url.pathname}`;
+
+console.log({
+	currentLocale: Astro.currentLocale,
+	preferredLocale: Astro.preferredLocale,
+	// locales,
+	locale: Astro.params.locale,
+	foundLocale,
+	pathname: Astro.url.pathname,
+	redirectTo,
+});
+
+// if (!foundLocale) {
+// 	// return Astro.redirect(redirectTo);
+// }
+const pdpUrl = getRelativeLocaleUrl(locale, "/product/nike-air-force-1-07-le-mens/W2288111.html");
+const aboutUrl = getRelativeLocaleUrl(locale, "/about");
 ---
 
 <Layout title="Welcome to Astro">
@@ -18,14 +42,14 @@ import BannerName from "@BANNER/BannerName.astro";
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
 		</p>
 		<p>
-			Product Page: <a href="/en/product/nike-air-force-1-07-le-mens/W2288111.html">Nike Air Force 1 '07 LE - Men's</a>
+			Product Page: <a href={pdpUrl}>Nike Air Force 1 '07 LE - Men's</a>
 		</p>
 		<hr class="my-4" />
 
 		<ViewCounter />
 		<MyComponent prefix="What is up?" />
 		<p class="mb-6">
-			<a href="/about" class="">
+			<a href={aboutUrl} class="">
 				Learn more <strong>About</strong> this project
 			</a>
 		</p>
