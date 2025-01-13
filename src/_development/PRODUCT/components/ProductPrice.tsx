@@ -1,4 +1,4 @@
-import type { FormattedProductPrice } from "@PNC/utils";
+import type { FormattedProductPrice } from "@PRODUCT/utils";
 
 export function ProductPrice({
 	className,
@@ -24,9 +24,7 @@ export function ProductPrice({
 				</ins>
 				<del className="text-sm">{formattedListPrice}</del>{" "}
 				{salePercent && (
-					<span className="text-xs text-red-700">
-						{salePercent}% off
-					</span>
+					<span className="text-xs text-red-700">{salePercent}% off</span>
 				)}
 			</p>
 		);

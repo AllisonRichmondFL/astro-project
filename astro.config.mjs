@@ -56,7 +56,8 @@ export default defineConfig({
 		}),
 	],
 	server: { headers: {}, open: "/" },
-	site: "https://www.footlocker.com", // @TODO: an integration that handles this per banner?
+	// site: "https://www.footlocker.com", // @TODO: an integration that handles this per banner?
+	// site: `https://www.${Astro.cookies.get("banner")?.value ? JSON.parse(Astro.cookies.get("banner").value).host : "footlocker.com"}`,
 	domains: {
 		"de": "https://www.footlocker.de",
 		"fr": "https://www.footlocker.fr",

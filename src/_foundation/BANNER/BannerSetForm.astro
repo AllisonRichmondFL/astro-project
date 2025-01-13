@@ -28,19 +28,20 @@ const method = undefined; // "POST";
 
 <div class="p-2 bg-slate-400 text-slate-950 flex justify-between align-middle">
 	<p class="leading-relaxed">Current Banner: <code>{JSON.stringify(banner.siteId)}</code></p>
-	<form action={action} method={method} class="inline-block outline-1 outline-red-500">
-		<label>
+
+	<form action={action} method={method} class="outline-1 outline-red-500 flex flex-row gap-1">
+		<label for={`select_${SITE_ID}`}>
 			<span class="text-sm opacity-80">Change banner:</span>
-			<select name={SITE_ID} class="text-sm py-[0.335em] px-2">
-				{
-					Object.values(banners).map(({ host, siteId }) => (
-						<option value={siteId} selected={siteId === banner.siteId}>
-							{host}
-						</option>
-					))
-				}
-			</select>
 		</label>
+		<select name={SITE_ID} id={`select_${SITE_ID}`} class="text-sm py-[0.3375em] px-2">
+			{
+				Object.values(banners).map(({ host, siteId }) => (
+					<option value={siteId} selected={siteId === banner.siteId}>
+						{host}
+					</option>
+				))
+			}
+		</select>
 		<button class="text-sm py-1 px-2 bg-white" type="submit">→</button>
 	</form>
 </div>

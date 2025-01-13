@@ -8,9 +8,9 @@ import {
 	PdpHeader,
 	PdpSizes,
 	ProductPrice,
-} from "@PNC/components";
-import type { ProductDetailsFormatted } from "@PNC/utils";
-import { useSelectedSize } from "@PNC/components/PdpSizes";
+} from "@PRODUCT/components/PdpHeader";
+import type { ProductDetailsFormatted } from "@PRODUCT/utils";
+import { useSelectedSize } from "@PRODUCT/components/PdpSizes";
 
 export type PdpSlotName =
 	| "aboveAddToCart"
@@ -45,11 +45,7 @@ export function PDP({ colorways, model, sizes, style, slots }: PdpProps) {
 					/>
 
 					<form action="#AddToCart">
-						<PdpSizes
-							handleChange={handleChange}
-							sizes={sizes}
-							style={style}
-						/>
+						<PdpSizes handleChange={handleChange} sizes={sizes} style={style} />
 
 						{/* <pre className="text-xs [tab-size:1em]">
 							{JSON.stringify(selectedSize, null, "\t")}

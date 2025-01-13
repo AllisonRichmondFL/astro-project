@@ -1,6 +1,9 @@
 import clsx from "clsx";
-import { ProductImage } from "@PNC/components";
-import type { FormattedPdpModel, ProductDetailsFormatted } from "@PNC/utils";
+import { ProductImage } from "@PRODUCT/components/PdpHeader";
+import type {
+	FormattedPdpModel,
+	ProductDetailsFormatted,
+} from "@PRODUCT/utils";
 
 export function PdpColorwayLink({
 	model,
@@ -31,8 +34,7 @@ export function PdpColorwayLink({
 				{
 					"before:bg-white before:border before:border-neutral-600 before:absolute before:top-1/2 before:left-0 before:right-[10%]":
 						!isActive,
-					"before:shadow-[0_0_0_2px_white] before:-rotate-[35deg]":
-						!isActive,
+					"before:shadow-[0_0_0_2px_white] before:-rotate-[35deg]": !isActive,
 				}
 			)}
 		>
@@ -64,9 +66,7 @@ export function PdpColorways({
 								model={model}
 								selectedSku={style.sku}
 								variant={variants[0]}
-								variants={variants.filter(
-									(v) => v.size === selectedSize
-								)}
+								variants={variants.filter((v) => v.size === selectedSize)}
 							/>
 						</li>
 					))}

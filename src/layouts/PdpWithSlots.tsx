@@ -1,17 +1,15 @@
-import type { ProductDetailsFormatted } from "@PNC/utils";
+import type { ProductDetailsFormatted } from "@PRODUCT/utils";
 import PDP, {
 	useSlot,
 	type PdpSlotName,
-} from "@PNC/layouts/ProductDetailsPage";
+} from "@PRODUCT/layouts/ProductDetailsPage";
 
 export default function PdpWithSlots(data: ProductDetailsFormatted) {
 	const salePrice = data.style.price.salePrice;
 
 	return (
 		<div className="bg-white text-black lg:px-4">
-			<h1 className="font-mono uppercase text-center p-1">
-				PDP with Slots
-			</h1>
+			<h1 className="font-mono uppercase text-center p-1">PDP with Slots</h1>
 			<PDP.WithChildren {...data}>
 				<PDP.Slot name="paymentMethods">
 					<PaymentKlarna salePrice={salePrice} />
@@ -56,8 +54,7 @@ export function PaymentKlarna({ salePrice }: { salePrice: number }) {
 	const installment = (salePrice / 4).toFixed(2);
 	return (
 		<p className="text-xs bg-neutral-100 p-1">
-			4 interest-free payments of ${installment} with{" "}
-			<strong>Klarna</strong>.{" "}
+			4 interest-free payments of ${installment} with <strong>Klarna</strong>.{" "}
 			<a href="#" className="text-inherit underline">
 				Learn more
 			</a>

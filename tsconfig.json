@@ -5,10 +5,10 @@
 		"paths": {
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"],
-			"@BANNER/*": ["src/_BANNER/*"],
-			"@LOY/*": ["src/_LOY/*"],
-			"@PNC/*": ["src/_PNC/*"],
-			"@SNB/*": ["src/_SNB/*"],
+			"@BANNER/*": ["src/_foundation/BANNER/*"],
+			"@LOYALTY/*": ["src/_development/LOYALTY/*"],
+			"@PRODUCT/*": ["src/_development/PRODUCT/*"],
+			"@SEARCH/*": ["src/_development/SEARCH/*"],
 			"@utils/*": ["src/utils/*"]
 		},
 		"jsx": "react-jsx",

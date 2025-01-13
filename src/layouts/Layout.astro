@@ -30,7 +30,7 @@ const banner = getBannerFromAstro(Astro);
 	</head>
 
 	<body>
-		<BannerSetForm />
+		{import.meta.env.DEV && <BannerSetForm />}
 		<!-- <HeaderNav /> -->
 		<slot />
 		<!-- <FooterNav /> -->

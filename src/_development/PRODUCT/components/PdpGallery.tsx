@@ -1,5 +1,5 @@
-import { ProductImage } from "@PNC/components";
-import type { ProductDetailsFormatted } from "@PNC/utils";
+import { ProductImage } from "@PRODUCT/components/PdpHeader";
+import type { ProductDetailsFormatted } from "@PRODUCT/utils";
 import clsx from "clsx";
 
 const imgWidth = 550;
@@ -22,10 +22,7 @@ export function PdpGallery({
 			{variants.map((variant, i) => (
 				<li
 					key={variant}
-					className={clsx(
-						{ "col-span-2 row-span-2": i === 0 },
-						"bg-white"
-					)}
+					className={clsx({ "col-span-2 row-span-2": i === 0 }, "bg-white")}
 				>
 					<ProductImage
 						alt={`${alt} - ${i + 1}`}

@@ -1,4 +1,4 @@
-import type { FormattedPdpSize, ProductDetailsFormatted } from "@PNC/utils";
+import type { FormattedPdpSize, ProductDetailsFormatted } from "@PRODUCT/utils";
 import clsx from "clsx";
 import { useState } from "react";
 
@@ -7,9 +7,7 @@ export function useSelectedSize() {
 
 	function handleChange(sizeObj: FormattedPdpSize) {
 		return (
-			e:
-				| React.ChangeEvent<HTMLElement>
-				| React.MouseEvent<HTMLButtonElement>
+			e: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLButtonElement>
 		) => {
 			console.log("handleChange", sizeObj);
 			setSize(sizeObj);
@@ -90,8 +88,7 @@ export function PdpSizeButton({ handleClick, ...size }: PdpSizeProps) {
 					"peer-focus:ring peer-focus:ring-purple-500",
 					"peer-checked:bg-black peer-checked:text-white",
 					{
-						"opacity-50 border-transparent cursor-not-allowed":
-							disabled,
+						"opacity-50 border-transparent cursor-not-allowed": disabled,
 						"border-neutral-300 bg-gradient-to-br from-[49%] from-white via-50% via-neutral-500 to-[51%] to-white":
 							disabled,
 					}
