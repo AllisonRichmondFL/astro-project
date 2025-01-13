@@ -1,25 +1,9 @@
-import { getBannerConfigFromHost, getBannerDomain } from "@BANNER/banner.configs";
+import { setBannerFromAstro } from "@BANNER/banner.configs";
 import { defineMiddleware, sequence } from "astro:middleware";
 
-const SITE_ID_COOKIE = "banner";
-
 const bannerDetection = defineMiddleware(async (context, next) => {
-	let banner = "XX";
-	const cookie = context.cookies.get(SITE_ID_COOKIE)?.value;
-	console.log("bannerDetection", { cookie });
-
-	if (cookie) {
-		banner = cookie;
-	} else {
-		const bannerObj = getBannerConfigFromHost(context.url.hostname);
-		banner = bannerObj.siteId; // getBannerFromHost(context.url.hostname);
-		console.log("getBannerConfigFromHost", { hostname: context.url.hostname, banner });
-		context.cookies.set(SITE_ID_COOKIE, banner, { path: "/" });
-	}
-	// const bannerDomain = getBannerDomain(context);
-	// context.url.host = bannerDomain; // `www.${bannerObj.host}`;
-	// console.log("middleware", { bannerDomain });
-	console.groupEnd();
+	const banner = setBannerFromAstro(context);
+	// console.log("🏁 banner:", banner.siteId);
 	return next();
 });
 
@@ -90,6 +74,6 @@ const sanitize = defineMiddleware(async (_context, next) => {
 // export const onRequest = sequence(validation, auth, sanitize);
 // export const onRequest = sequence(bannerDetection);
 export const onRequest = sequence(
-	greeting
-	// bannerDetection,
+	// greeting
+	bannerDetection
 );

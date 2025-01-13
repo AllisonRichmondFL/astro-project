@@ -19,10 +19,10 @@ const isApi = page?.includes("api/") && page?.endsWith(".json");
 console.log("Catchall page:", {
 	page,
 	isApi,
-	locale,
-	currentLocale,
-	preferredLocale,
-	preferredLocaleList,
+	// locale,
+	// currentLocale,
+	// preferredLocale,
+	// preferredLocaleList,
 });
 
 if (!page || isApi) {
@@ -46,8 +46,7 @@ const route = `${Astro.url.origin}/api/page.${slug}.json`;
 // const { components, metaDescription, persona, seoCanonicalURL, title } = resp;
 ---
 
-<pre
-	class="text-xs">
+<pre class="text-xs">
 	{JSON.stringify({page, currentLocale, preferredLocale, preferredLocaleList}, null, "\t")}
 </pre>
 <!-- <Layout canonical={seoCanonicalURL} description={metaDescription} title={title}>

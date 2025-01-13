@@ -1,8 +1,11 @@
 ---
-import { banners, setBannerFromAstro, SITE_ID_COOKIE } from "@BANNER/banner.configs";
+import { banners, getBannerFromAstro, SITE_ID_COOKIE } from "@BANNER/banner.configs";
 const SITE_ID = SITE_ID_COOKIE;
 
-const banner = setBannerFromAstro(Astro);
+const banner = getBannerFromAstro(Astro);
+const searchParam = Astro.url.searchParams.get(SITE_ID_COOKIE);
+if (searchParam) console.log("⛳️ banner:", banner.siteId);
+
 const action = undefined; // `/${Astro.currentLocale}/`;
 const method = undefined; // "POST";
 
