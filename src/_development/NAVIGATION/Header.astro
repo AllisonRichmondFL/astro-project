@@ -1,10 +1,8 @@
 ---
 import HeaderNav from "./HeaderNav.astro";
 import { getBannerFromAstro } from "@utils/banner.configs";
-import config from "astro.config.mjs";
 import { getRelativeLocaleUrl } from "astro:i18n";
-
-const locales = config?.i18n?.locales!;
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 const banner = getBannerFromAstro(Astro);
 const locale = Astro.currentLocale ?? Astro.preferredLocale!;
@@ -20,8 +18,7 @@ const homeUrl = getRelativeLocaleUrl(locale, "/");
 			</a>
 		</p>
 
-		<p>Locales: <code>{locales.map(({ path }) => path).join("|")}</code></p>
-		<p>Current Locale: <code>{Astro.params.locale}</code></p>
+		<LanguageSwitcher />
 	</div>
 	<!-- <HeaderNav /> -->
 </header>

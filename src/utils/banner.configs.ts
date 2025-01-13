@@ -1,4 +1,5 @@
-import type { APIContext, AstroCookies, AstroGlobal } from "astro";
+import { getGeoConfigs, type CountryCode } from "@BANNER/locale.configs";
+import type { APIContext, AstroGlobal } from "astro";
 
 /**
  * Banner Detection Scenarios
@@ -10,32 +11,40 @@ import type { APIContext, AstroCookies, AstroGlobal } from "astro";
 
 export const banners = {
 	CS: {
-		bannerType: "CS",
-		defaultCountry: "US",
+		bannerType: "CS" as BannerBrandId,
+		siteId: "CS",
 		host: "champssports.com",
 		name: "Champs Sports",
-		siteId: "CS",
+		// countryIso: "US" as CountryCode,
+		// languages: [LANG["en-US"]],
+		...getGeoConfigs("US"),
 	},
 	FL: {
-		bannerType: "FL",
-		defaultCountry: "US",
+		bannerType: "FL" as BannerBrandId,
+		siteId: "FL",
 		host: "footlocker.com",
 		name: "Foot Locker",
-		siteId: "FL",
+		// countryIso: "US" as CountryCode,
+		// languages: [LANG["en-US"]],
+		...getGeoConfigs("US"),
 	},
 	FLCA: {
-		bannerType: "FL",
-		defaultCountry: "CA",
+		bannerType: "FL" as BannerBrandId,
+		siteId: "FLCA",
 		host: "footlocker.ca",
 		name: "Foot Locker Canada",
-		siteId: "FLCA",
+		// countryIso: "CA" as CountryCode,
+		// languages: [LANG["en-CA"], LANG["fr-CA"]],
+		...getGeoConfigs("CA"),
 	},
 	KFL: {
-		bannerType: "KFL",
-		defaultCountry: "US",
+		bannerType: "KFL" as BannerBrandId,
+		siteId: "KFL",
 		host: "kidsfootlocker.com",
 		name: "Kids Foot Locker",
-		siteId: "KFL",
+		// countryIso: "US" as CountryCode,
+		// languages: [LANG["en-US"]],
+		...getGeoConfigs("US"),
 	},
 };
 
@@ -109,3 +118,11 @@ export function setBannerFromAstro({ cookies, url }: Pick<AstroGlobal, "cookies"
 
 	return banner;
 }
+
+// TYPES //
+
+const bannerBrandIds = ["CS", "FL", "KFL"] as const;
+
+export type BannerBrandId = (typeof bannerBrandIds)[number];
+
+export type BannerSiteId = "CS" | "CSCA" | "FL" | "KFL" | `${"FL"}${CountryCode}`;
