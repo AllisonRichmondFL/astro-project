@@ -4,7 +4,6 @@ import AstroLogo from "@components/AstroLogo.astro";
 import Card from "@components/Card.astro";
 import MyComponent from "@components/MyComponent.astro";
 import ViewCounter from "@components/ViewCounter.astro";
-import BannerName from "@BANNER/BannerName.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getBannerFromAstro } from "@BANNER/banner.configs";
 
@@ -43,7 +42,7 @@ const aboutUrl = getRelativeLocaleUrl(currentLocale, "/about");
 	<main>
 		<AstroLogo />
 		<h1 class="my-16">
-			Welcome to <span class="text-gradient"><BannerName /></span>
+			Welcome to <span class="text-gradient">{banner.name}</span>
 		</h1>
 		<p class="instructions">
 			To get started, open the directory <code>src/pages</code> in your project.<br />
