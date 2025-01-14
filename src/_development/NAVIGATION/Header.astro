@@ -8,10 +8,11 @@ import SearchForm from "@SEARCH/SearchForm.astro";
 const banner = getBannerFromAstro(Astro);
 const locale = Astro.currentLocale ?? Astro.preferredLocale!;
 const homeUrl = getRelativeLocaleUrl(locale, "/");
+const cartUrl = getRelativeLocaleUrl(locale, "/cart");
 ---
 
 <header class="">
-	<div class="flex gap-4 justify-between px-4 py-2 border-b border-b-neutral-500 bg-white text-black">
+	<div class="flex gap-4 items-center justify-between px-4 py-2 border-b border-b-neutral-500 bg-white text-black">
 		<p data-id="Logo" class="">
 			<a href={homeUrl} class="text-inherit">
 				<img src={`/${banner.bannerType}/logo.svg`} alt={banner.name} title={`${banner.name} (home)`} height="30" />
@@ -20,7 +21,11 @@ const homeUrl = getRelativeLocaleUrl(locale, "/");
 
 		<SearchForm />
 
-		<LanguageSwitcher />
+		<div class="flex gap-4 items-center">
+			<LanguageSwitcher />
+
+			<a href={cartUrl} class="inline-block py-1 px-2 bg-neutral-100 text-inherit">Cart</a>
+		</div>
 	</div>
 	<!-- <HeaderNav /> -->
 </header>

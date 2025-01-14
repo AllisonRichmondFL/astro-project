@@ -15,6 +15,7 @@ export interface PageResponse {
 let page = Astro.params.page;
 const locale = Astro.params.locale;
 const { currentLocale, preferredLocale, preferredLocaleList } = Astro;
+
 const isApi = page?.includes("api/") && page?.endsWith(".json");
 console.log("Catchall page:", {
 	page,
@@ -33,6 +34,9 @@ if (!page || isApi) {
 }
 const slug = page.split(".")[0];
 const route = `${Astro.url.origin}/api/page.${slug}.json`;
+
+let title = slug.replace(/\//g, " ");
+
 // let resp: PageResponse;
 // try {
 // 	resp = await fetch(route).then((r) => r.json());
@@ -46,22 +50,19 @@ const route = `${Astro.url.origin}/api/page.${slug}.json`;
 // const { components, metaDescription, persona, seoCanonicalURL, title } = resp;
 ---
 
-<pre class="text-xs">
-	{JSON.stringify({page, currentLocale, preferredLocale, preferredLocaleList}, null, "\t")}
-</pre>
-<!-- <Layout canonical={seoCanonicalURL} description={metaDescription} title={title}>
+<!-- <Layout canonical={seoCanonicalURL} description={metaDescription} title={title}> -->
+<Layout title={title}>
 	<h1 class="text-5xl font-bold text-center my-16">{title}</h1>
 
-	{
+	<pre class="text-xs">{JSON.stringify({page, isApi, currentLocale, preferredLocale, route}, null, "\t")}</pre>
+	<!-- {
 		components.map((component, i) => (
 			<details open={false}>
 				<summary>
 					{i}. type: {component.type}
 				</summary>
-				<pre class="text-xs">
-					{JSON.stringify(component, null, "\t")}
-				</pre>
+				<pre class="text-xs">{JSON.stringify(component, null, "\t")}</pre>
 			</details>
 		))
-	}
-</Layout> -->
+	} -->
+</Layout>
