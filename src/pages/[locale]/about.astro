@@ -5,68 +5,51 @@ import SetHtml from "@components/SetHtml.astro";
 import Checkbox from "@components/Checkbox.astro";
 ---
 
-<Layout title="About my Astro project">
-	<main>
-		<h1 class="my-16">About <span class="text-gradient">My Project</span></h1>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<SetHtml />
-		<SetHtml
-			htmlString=`<p>It's real, <u>raw</u>, <strong>HTML</strong> <em>content</em>!! (<a href="mailto:me@home.com">Email us to find out more</a>)</p>`
-		/>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<MyReactComponent className="my-4"> Static React component </MyReactComponent>
-		<p>(Nothing will happen when you click the button)</p>
+<Layout title="About my Astro project" main-class="max-w-screen-lg">
+	<h1 class="my-16">About <span class="text-gradient">My Project</span></h1>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<SetHtml />
+	<SetHtml
+		htmlString=`<p>It's real, <u>raw</u>, <strong>HTML</strong> <em>content</em>!! (<a href="mailto:me@home.com">Email us to find out more</a>)</p>`
+	/>
+	<MyReactComponent className="my-4"> Static React component </MyReactComponent>
+	<p>(Nothing will happen when you click the button)</p>
 
-		<MyReactComponent className="bg-purple-300 text-black mt-8 mb-4" client:load>
-			React component with <code>client:load</code>
-		</MyReactComponent>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<Checkbox label="Astro Checkbox" name="checkbox" class="my-6" />
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
+	<MyReactComponent className="bg-purple-300 text-black mt-8 mb-4" client:load>
+		React component with <code>client:load</code>
+	</MyReactComponent>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<Checkbox label="Astro Checkbox" name="checkbox" class="my-6" />
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
 
-		<MyReactComponent className="my-8 bg-purple-900" client:visible>
-			React component with <code>client:visible</code>
-		</MyReactComponent>
+	<MyReactComponent className="my-8 bg-purple-900" client:visible>
+		React component with <code>client:visible</code>
+	</MyReactComponent>
 
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<p>Hey there! Welcome to my Astro project!</p>
-		<p>Here we'll share everything about Astro</p>
-		<MyReactComponent className="bg-purple-300 text-black my-12" client:only="react">
-			React component with <code>client:only="react"</code>
-		</MyReactComponent>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
+	<p>Hey there! Welcome to my Astro project! Here we'll share everything about Astro</p>
 
-		<hr class="my-8" />
-		<p class="my-4">
-			<a href="/" class="">Go back <strong>Home</strong></a>
-		</p>
-	</main>
+	<MyReactComponent className="bg-purple-300 text-black my-12" client:only="react">
+		React component with <code>client:only="react"</code>
+	</MyReactComponent>
+
+	<hr class="my-8" />
+	<p class="my-4">
+		<a href="/" class="">Go back <strong>Home</strong></a>
+	</p>
 </Layout>
 
 <style>

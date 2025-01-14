@@ -4,21 +4,26 @@ import BannerSetForm from "@BANNER/BannerSetForm.astro";
 import { getBannerFromAstro } from "@BANNER/banner.configs";
 import Header from "@NAVIGATION/Header.astro";
 import Html from "./Html.astro";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
 	canonical?: string;
 	description?: string;
 	title: string;
+	"main-class"?: string;
+	// main?: astroHTML.JSX.HTMLAttributes;
 }
 const banner = getBannerFromAstro(Astro);
+
+const { ["main-class"]: mainClass, ...props } = Astro.props;
 ---
 
-<Html {...Astro.props} bannerName={banner.name} bannerType={banner.bannerType}>
+<Html {...props} bannerName={banner.name} bannerType={banner.bannerType}>
 	{import.meta.env.DEV && <BannerSetForm />}
 
 	<Header />
 
-	<main class="max-w-screen-xl mx-auto">
+	<main class={twMerge("relative mx-auto max-w-screen-xl", mainClass)}>
 		<slot />
 	</main>
 
