@@ -1,12 +1,15 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import ProductCard from "@SEARCH/ProductCard.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const currentLocale = Astro.currentLocale ?? Astro.preferredLocale!;
 
 const baseRoute = `${Astro.url.origin}/search.json${Astro.url.search}&pageType=search`;
 
 const results = await fetch(baseRoute).then((r) => r.json());
 
 if (results?.keywordRedirectUrl) {
-	const currentLocale = Astro.currentLocale ?? Astro.preferredLocale!;
 	// console.log("keywordRedirectUrl:", results?.keywordRedirectUrl);
 	const keywordRedirectUrl = `/${currentLocale}${results.keywordRedirectUrl}`;
 	console.log("⏭️ ", { keywordRedirectUrl });
@@ -25,4 +28,13 @@ if (results?.keywordRedirectUrl) {
 		))
 	}
 	<!-- <pre class="text-xs">{JSON.stringify(results, null, 2)}</pre> -->
+	<ul class="grid grid-cols-4 gap-2">
+		{
+			results?.products?.map((product: any) => (
+				<li>
+					<ProductCard {...product} />
+				</li>
+			))
+		}
+	</ul>
 </Layout>

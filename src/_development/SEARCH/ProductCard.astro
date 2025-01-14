@@ -1,0 +1,120 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+interface Price {
+	value: number;
+	formattedValue: string;
+}
+interface ProductPrice {
+	salePrice: number;
+	formattedSalePrice: string;
+	formattedListPrice: string;
+	listPrice: number;
+}
+interface ProductImage {
+	url?: string;
+	format: string;
+	altText: string;
+}
+interface StyleVariant {
+	color: string;
+	imageSku: string;
+	images: ProductImage[];
+	name: string;
+	flagsAndRestrictions: Record<string, boolean>;
+	price: ProductPrice;
+	review: {
+		totalReviews: number;
+		averageRating: number;
+	};
+	sku: string;
+}
+
+export interface Props {
+	name: string;
+	sku: string;
+	badges: Record<string, boolean>;
+	originalPrice: Price;
+	price: Price;
+	reviewRatings: {
+		reviews: number;
+		rating: number;
+	};
+	baseOptions: {
+		selected: {
+			mapEnable: boolean;
+			style: string; // color
+		};
+	}[];
+	images: ProductImage[];
+	sellable: boolean;
+	variantOptions?: StyleVariant[];
+	variantsCount?: number;
+}
+
+const currentLocale = Astro.currentLocale ?? Astro.preferredLocale!;
+const product = Astro.props;
+const [name, gender] = product.name.split(" - ");
+const style = product.baseOptions?.[0]?.selected.style;
+const productImage = product.images?.[0]?.url || `https://images.footlocker.com/is/image/EBFL2/${product.sku}`;
+
+function setImageDimensions(url: string, width = 200, height = width) {
+	if (!url) return "";
+	try {
+		const imageUrl = new URL(url);
+		imageUrl.searchParams.set("wid", width.toString());
+		imageUrl.searchParams.set("hei", height.toString());
+		return imageUrl.toString();
+	} catch (err) {
+		console.error(err);
+		return url;
+	}
+}
+---
+
+<div data-id="ProductCard">
+	<a
+		href={getRelativeLocaleUrl(
+			currentLocale,
+			`/product/${product.name.replaceAll(" ", "-").toLowerCase()}/${product.sku}.html`
+		)}
+	>
+		<img src={productImage} alt={product.name} width={120} height={120} />
+	</a>
+	<h3 class="text-2xl">{name}</h3>
+	<p class="my-2 text-xs">⭐️ {product.reviewRatings.rating} <span>({product.reviewRatings.reviews})</span></p>
+	<p class="text-xs">
+		<span class="block">{gender}</span>
+		<span class="sr-only">-</span>
+		<span class="block">{style}</span>
+	</p>
+	<p>{product.price.formattedValue}</p>
+	<!-- <pre class="text-tiny whitespace-pre-wrap">{JSON.stringify(product, null, 2)}</pre> -->
+	{
+		product.variantOptions?.length && (
+			<ul class="flex gap-2">
+				<li>
+					<button class="border border-neutral-500/50">
+						<img src={productImage} alt={product.name} width={35} height={35} />
+					</button>
+				</li>
+				{product.variantOptions.map(({ images, imageSku, name, sku }) => (
+					<li>
+						<button class="border border-neutral-500/50">
+							<img
+								src={
+									imageSku ||
+									images?.[0]?.url ||
+									`https://images.footlocker.com/is/image/EBFL2/${sku}?wid=${35}&hei=${35}`
+								}
+								alt={name}
+								width={35}
+								height={35}
+							/>
+						</button>
+					</li>
+				))}
+			</ul>
+		)
+	}
+</div>

@@ -13,6 +13,9 @@ export default {
 				"orange-yellow-gradient":
 					"linear-gradient(266.93deg, #F8E42E 0%, #FF7D54 100%)",
 			},
+			fontSize: {
+				tiny: '0.625rem', // 10px
+			},
 		},
 	},
 	plugins: [],
