@@ -4,12 +4,14 @@ import partytown from "@astrojs/partytown";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 
+const REMOTE_ENV = process.env.REMOTE_ENV || "uat"; // "prd";
+console.log("👉", { REMOTE_ENV });
+
 // https://astro.build/config
 export default defineConfig({
 	adapter: node({
 		mode: "standalone",
 	}),
-	output: "server",
 	i18n: {
 		defaultLocale: "en",
 		// locales: [ "en-US", "en-GB", "en-CA", "fr-CA", "fr-FR", "de-DE", "it-IT", "ko-KR" ],
@@ -57,7 +59,29 @@ export default defineConfig({
 			// applyBaseStyles: false,
 		}),
 	],
+	output: "server",
 	server: { headers: {}, open: "/" },
+	vite: {
+		server: {
+			proxy: {
+				"/search-core": {
+					target: `https://services.product.${REMOTE_ENV}.int.footlocker.com/`,
+					changeOrigin: true,
+					secure: false,
+				},
+				// "/product-core": {
+				// 	target: `https://services.product.${REMOTE_ENV}.int.footlocker.com/`,
+				// 	changeOrigin: true,
+				// 	secure: false,
+				// },
+				"/zgw": {
+					target: `https://www.uat2.origin.footlocker.com/`,
+					changeOrigin: true,
+					secure: false,
+				},
+			},
+		},
+	},
 	// site: "https://www.footlocker.com", // @TODO: an integration that handles this per banner?
 	// site: `https://www.${Astro.cookies.get("banner")?.value ? JSON.parse(Astro.cookies.get("banner").value).host : "footlocker.com"}`,
 	domains: {

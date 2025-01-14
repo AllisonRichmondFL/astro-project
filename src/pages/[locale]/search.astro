@@ -1,0 +1,28 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+const baseRoute = `${Astro.url.origin}/search.json${Astro.url.search}&pageType=search`;
+
+const results = await fetch(baseRoute).then((r) => r.json());
+
+if (results?.keywordRedirectUrl) {
+	const currentLocale = Astro.currentLocale ?? Astro.preferredLocale!;
+	// console.log("keywordRedirectUrl:", results?.keywordRedirectUrl);
+	const keywordRedirectUrl = `/${currentLocale}${results.keywordRedirectUrl}`;
+	console.log("⏭️ ", { keywordRedirectUrl });
+	// return Astro.redirect(keywordRedirectUrl);
+}
+---
+
+<Layout title="Search Results">
+	<h1 class="text-2xl my-2 mb-4">Search results for &ldquo;{Astro.url.searchParams.get("query")}&rdquo;</h1>
+	{
+		Object.entries(results).map(([key, val]) => (
+			<details class="text-xs" open={key === "errors" || key === "currentQuery" || key === "keywordRedirectUrl"}>
+				<summary>{key}</summary>
+				<pre class="pl-8 text-xs">{JSON.stringify(val, null, 2)}</pre>
+			</details>
+		))
+	}
+	<!-- <pre class="text-xs">{JSON.stringify(results, null, 2)}</pre> -->
+</Layout>

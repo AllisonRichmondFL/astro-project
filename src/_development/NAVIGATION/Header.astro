@@ -3,6 +3,7 @@ import HeaderNav from "./HeaderNav.astro";
 import { getBannerFromAstro } from "@BANNER/banner.configs";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
+import SearchForm from "@SEARCH/SearchForm.astro";
 
 const banner = getBannerFromAstro(Astro);
 const locale = Astro.currentLocale ?? Astro.preferredLocale!;
@@ -10,12 +11,14 @@ const homeUrl = getRelativeLocaleUrl(locale, "/");
 ---
 
 <header class="">
-	<div class="flex gap-4 px-4 py-2 border-y border-t-blue-600/50 border-b-black/50 bg-blue-900/60">
-		<p class="mr-auto">
+	<div class="flex gap-4 justify-between px-4 py-2 border-b border-b-neutral-500 bg-white text-black">
+		<p data-id="Logo" class="">
 			<a href={homeUrl} class="text-inherit">
 				<img src={`/${banner.bannerType}/logo.svg`} alt={banner.name} title={`${banner.name} (home)`} height="30" />
 			</a>
 		</p>
+
+		<SearchForm />
 
 		<LanguageSwitcher />
 	</div>

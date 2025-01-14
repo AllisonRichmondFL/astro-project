@@ -1,0 +1,51 @@
+---
+import config from "astro.config.mjs";
+import { banners, getBannerFromAstro } from "@BANNER/banner.configs";
+const QUERY = "query";
+
+const defaultValue = Astro.url.searchParams.get(QUERY);
+const action = `/${Astro.params.locale}/search`; // undefined; //
+const method = undefined; // "POST"; //
+
+const banner = getBannerFromAstro(Astro);
+
+const allLocales = config?.i18n?.locales!;
+const languages = banner.languages;
+const locale = Astro.currentLocale ?? Astro.preferredLocale!;
+
+// if (Astro.request.method === "POST") {
+// 	try {
+// 		const data = await Astro.request.formData();
+// 		const val = data.get(QUERY)?.toString();
+// 		console.log("LanguageSwitcher POST val:", val);
+// 		// if (val) {
+// 		// 	const redirectTo = `/${val}/`;
+// 		// 	console.log("LanguageSwitcher:", { redirectTo });
+// 		// 	Astro.redirect(redirectTo);
+// 		// 	// Astro.cookies.set(QUERY, val, { path: "/" });
+// 		// 	// console.log("BannerSetForm POST:", { siteId }, banner);
+// 		// }
+// 	} catch (err) {
+// 		if (err instanceof Error) {
+// 			console.error("❌", err.message);
+// 		}
+// 	}
+// }
+---
+
+<form
+	action={action}
+	method={method}
+	class="flex flex-row items-center border border-neutral-500/30 rounded transition-colors bg-white hover:bg-neutral-100 w-1/2"
+>
+	<label for={`select_${QUERY}`} class="sr-only">Search</label>
+	<input
+		id={`select_${QUERY}`}
+		name={QUERY}
+		placeholder="Search"
+		type="search"
+		value={defaultValue}
+		class="inline-block w-full py-2 px-3 text-sm leading-tight bg-transparent text-inherit outline-offset-1"
+	/>
+	<button class="inline-block py-2 px-2.5 text-sm leading-tight bg-transparent text-inherit" type="submit">🔍</button>
+</form>
