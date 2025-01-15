@@ -6,7 +6,7 @@ export interface Language {
 	acceptLanguage: string;
 }
 
-export const LANG = {
+export const LANG: Record<Locale, Language> = {
 	"de-DE": {
 		lang: "de",
 		locale: "de-DE",
@@ -67,7 +67,7 @@ export const LANG = {
 		locale: "zh-TW",
 		acceptLanguage: "zh-TW,en;q=0.9",
 	},
-} as const;
+};
 
 function configure(countryIso: CountryCode, region: Region, locales: Locale[]) {
 	return {

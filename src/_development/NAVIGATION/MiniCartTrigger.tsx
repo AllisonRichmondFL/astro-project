@@ -8,11 +8,6 @@ export default function MiniCartTrigger({
 }: PropsWithChildren<{ modal?: boolean; open?: boolean }>) {
 	const [isOpen, setOpen] = React.useState(!!open);
 
-	function onOpenChange(_open: boolean) {
-		// console.log("onOpenChange", { isOpen: _open });
-		setOpen(_open);
-	}
-
 	function handleToggle() {
 		setOpen(!isOpen);
 	}
@@ -33,11 +28,11 @@ export default function MiniCartTrigger({
 		<div onMouseEnter={onHover}>
 			{children}
 
-			<Popover.Root modal={modal} open={isOpen} onOpenChange={onOpenChange}>
+			<Popover.Root modal={modal} open={isOpen} onOpenChange={setOpen}>
 				<Popover.Trigger></Popover.Trigger>
 				<Popover.Anchor />
 				<Popover.Portal>
-					<Popover.Content className="flex flex-col gap text-black bg-white border border-neutral-200 shadow-lg mr-2">
+					<Popover.Content className="flex flex-col text-black bg-white border border-neutral-200 shadow-lg mr-2">
 						<div className="flex gap-4 justify-between items-center p-2 border-b border-b-neutral-500/20">
 							<p className="text-sm">Added Nike Club Pullover Hoodie to cart</p>
 

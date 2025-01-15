@@ -1,7 +1,9 @@
 ---
 import config from "astro.config.mjs";
-import { banners, getBannerFromAstro } from "@BANNER/banner.configs";
+import { getBannerFromAstro } from "@BANNER/banner.configs";
 import { getLanguageName, type Locale } from "@BANNER/locale.configs";
+import LanguageDropdown from "@NAVIGATION/LanguageDropdown";
+
 const LOCALE = "locale";
 
 const action = undefined; // `/${Astro.currentLocale}/`;
@@ -40,18 +42,19 @@ if (Astro.request.method === "POST") {
 ---
 
 <div class="flex flex-row items-center gap-6">
-	<details class="relative marker:hidden marker:content-none transition-colors hover:bg-neutral-100 py-1 px-2">
+	<LanguageDropdown client:visible languages={languages}>🌐 {getLanguageName(locale as Locale)}</LanguageDropdown>
+
+	<!-- <details class="relative marker:hidden marker:content-none transition-colors hover:bg-neutral-100 py-1 px-2">
 		<summary class="">
 			<span class="text-sm">
-				🌐
-				{getLanguageName(locale as Locale)}
+				🌐 {getLanguageName(locale as Locale)}
 			</span>
 		</summary>
 		<div class="absolute left-0 right-0 mt-2 p-3 bg-white border border-neutral-200">
 			<ul class="flex flex-col gap-2">
 				{
 					languages.map((language) => (
-						<li value={language.lang}>
+						<li>
 							<a
 								href={`/${language.lang}/`}
 								aria-selected={language.lang === locale}
@@ -64,7 +67,7 @@ if (Astro.request.method === "POST") {
 				}
 			</ul>
 		</div>
-	</details>
+	</details> -->
 	<!-- <form action={action} method={method} class="flex flex-row items-center gap-3">
 		<p class="mr-4">Current Locale: <code>{Astro.params.locale}</code></p>
 		<label for={`select_${LOCALE}`} class="mr-2">Change locale:</label>
@@ -82,7 +85,7 @@ if (Astro.request.method === "POST") {
 		>
 	</form> -->
 </div>
-
+<!-- 
 <style>
 	summary {
 		position: relative;
@@ -106,4 +109,4 @@ if (Astro.request.method === "POST") {
 		transform: rotate(-45deg);
 		margin-top: -2px;
 	}
-</style>
+</style> -->
