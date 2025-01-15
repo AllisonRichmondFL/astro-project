@@ -1,7 +1,6 @@
 ---
 import HeaderNav from "./HeaderNav.astro";
 import { getBannerFromAstro } from "@BANNER/banner.configs";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import AccountLogin from "./AccountLogin.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import SearchForm from "@SEARCH/SearchForm.astro";
@@ -11,9 +10,9 @@ import IconLink from "./IconLink.astro";
 
 const banner = getBannerFromAstro(Astro);
 const locale = Astro.currentLocale ?? Astro.preferredLocale!;
-const homeUrl = getRelativeLocaleUrl(locale, "/");
-const cartUrl = getRelativeLocaleUrl(locale, "/cart");
-const favesUrl = getRelativeLocaleUrl(locale, "/account/favorites");
+const homeUrl = `/${locale}/`;
+const cartUrl = `/${locale}/cart`;
+const favesUrl = `/${locale}/account/favorites`;
 ---
 
 <header class="bg-white text-black border-b border-b-neutral-500/30">
