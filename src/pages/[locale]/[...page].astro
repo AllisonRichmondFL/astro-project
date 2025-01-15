@@ -33,7 +33,7 @@ if (!page || isApi) {
 	});
 }
 const slug = page.split(".")[0];
-const route = `${Astro.url.origin}/api/page.${slug}.json`;
+const route = new URL(`/api/page.${slug}.json`, Astro.url);
 
 let title = slug.replace(/\//g, " ");
 

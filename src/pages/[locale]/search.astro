@@ -1,13 +1,12 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import ProductCard from "@SEARCH/ProductCard.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
 
 const currentLocale = Astro.currentLocale ?? Astro.preferredLocale!;
 
-const baseRoute = `${Astro.url.origin}/search.json${Astro.url.search}&pageType=search`;
+const route = new URL(`/search.json${Astro.url.search}&pageType=search`, Astro.url);
 
-const results = await fetch(baseRoute).then((r) => r.json());
+const results = await fetch(route).then((r) => r.json());
 
 if (results?.keywordRedirectUrl) {
 	// console.log("keywordRedirectUrl:", results?.keywordRedirectUrl);

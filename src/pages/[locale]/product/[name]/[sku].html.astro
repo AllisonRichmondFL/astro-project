@@ -9,7 +9,7 @@ let sku = Astro.params.sku?.split(".html")?.[0]!;
 let name = Astro.params.name?.replace(/-/g, " ")!;
 const locale = (Astro.preferredLocale || Astro.currentLocale)!;
 const bannerDomain = getBannerDomain(Astro);
-// const route = `${Astro.url.origin}/product/details.json?sku=${sku}`;
+// const route = new URL(`/product/details.json?sku=${sku}`, Astro.url);
 const route = `${bannerDomain}/zgw/product-core/v1/pdp/sku/${sku}`;
 const headers: HeadersInit = { "x-api-lang": locale };
 const resp = await fetch(route, { headers }).then((r) => r.json());
