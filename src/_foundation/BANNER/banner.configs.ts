@@ -57,7 +57,6 @@ export const banners = {
 };
 
 export const BANNER_DEFAULT = "FL";
-export const BANNER_COOKIE = "banner";
 export const SITE_ID_COOKIE = "siteId";
 
 export function getBannerFromId(id: string | undefined): Banner {
@@ -101,17 +100,10 @@ export function getBannerFromHost(hostname: string) {
  * 3) get banner object from stored siteId cookie; derive banner object
  */
 export function getBannerFromAstro({ cookies, url }: Pick<AstroGlobal, "cookies" | "url">) {
-	let banner = {} as ReturnType<typeof getBannerFromId>;
-
-	const objCookie = cookies.get(BANNER_COOKIE)?.value;
 	const searchParam = url.searchParams.get(SITE_ID_COOKIE);
+	const idCookie = cookies.get(SITE_ID_COOKIE)?.value;
 
-	if (!searchParam && objCookie) {
-		banner = JSON.parse(objCookie);
-	} else {
-		const idCookie = cookies.get(SITE_ID_COOKIE)?.value;
-		banner = getBannerFromId(searchParam || idCookie);
-	}
+	const banner = getBannerFromId(searchParam || idCookie);
 	return banner;
 }
 
@@ -124,19 +116,15 @@ export function setBannerFromAstro({
 
 	const cookie = isPrerendered ? undefined : cookies.get(SITE_ID_COOKIE)?.value;
 
-	let siteId = param || cookie || BANNER_DEFAULT;
-	// console.log("BannerSetForm", Astro.request.method, { siteId });
+	console.log("setBannerFromAstro", { param, isPrerendered, cookie, url });
 
-	if (!isPrerendered && !cookie) {
+	let siteId = param || cookie || BANNER_DEFAULT;
+	// console.log("setBannerFromAstro", Astro.request.method, { siteId });
+
+	if (!isPrerendered) {
 		cookies.set(SITE_ID_COOKIE, siteId, { path: "/" });
 	}
 
-	let banner = getBannerFromId(siteId);
-
-	if (!isPrerendered && !cookies.get(SITE_ID_COOKIE)?.value) {
-		// console.log("BannerSetForm banner:", banner);
-		cookies.set(BANNER_COOKIE, banner, { path: "/" });
-	}
-
+	const banner = getBannerFromId(siteId);
 	return banner;
 }
