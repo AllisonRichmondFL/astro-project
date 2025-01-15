@@ -1,17 +1,15 @@
 ---
-import config from "astro.config.mjs";
 import { getBannerFromAstro } from "@BANNER/banner.configs";
 import { getLanguageName, type Locale } from "@BANNER/locale.configs";
 import LanguageDropdown from "@NAVIGATION/LanguageDropdown";
 
 const LOCALE = "locale";
 
-const action = undefined; // `/${Astro.currentLocale}/`;
-const method = undefined; // "POST";
+// const action = undefined; // `/${Astro.currentLocale}/`;
+// const method = undefined; // "POST";
 
 const banner = getBannerFromAstro(Astro);
 
-const allLocales = config?.i18n?.locales!;
 const languages = banner.languages;
 const locale = Astro.params.locale ?? Astro.currentLocale ?? Astro.preferredLocale!;
 
@@ -42,7 +40,9 @@ if (Astro.request.method === "POST") {
 ---
 
 <div class="flex flex-row items-center gap-6">
-	<LanguageDropdown client:visible languages={languages}>🌐 {getLanguageName(locale as Locale)}</LanguageDropdown>
+	<LanguageDropdown client:visible languages={languages} locale={locale}
+		>🌐 {getLanguageName(locale as Locale)}</LanguageDropdown
+	>
 
 	<!-- <details class="relative marker:hidden marker:content-none transition-colors hover:bg-neutral-100 py-1 px-2">
 		<summary class="">
@@ -73,7 +73,7 @@ if (Astro.request.method === "POST") {
 		<label for={`select_${LOCALE}`} class="mr-2">Change locale:</label>
 		<select name={LOCALE} id={`select_${LOCALE}`} class="inline-block p-1 font-inherit bg-neutral-500/40 text-inherit">
 			{
-				allLocales.map(({ path }) => (
+				languages.map(({ path }) => (
 					<option value={path} selected={path === locale}>
 						{path}
 					</option>
