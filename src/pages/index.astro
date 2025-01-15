@@ -1,4 +1,3 @@
 ---
-const locale = Astro.currentLocale ?? Astro.preferredLocale!;
-return Astro.redirect(`/${locale}/`);
+return Astro.redirect(`/${Astro.currentLocale ?? Astro.preferredLocale}/`);
 ---

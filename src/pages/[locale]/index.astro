@@ -4,10 +4,9 @@ import AstroLogo from "@components/AstroLogo.astro";
 import Card from "@components/Card.astro";
 import MyComponent from "@components/MyComponent.astro";
 import ViewCounter from "@components/ViewCounter.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import ToggleMiniCart from "@NAVIGATION/ToggleMiniCart";
 
-const locale = Astro.params.locale;
+const locale = Astro.params.locale ?? Astro.currentLocale ?? Astro.preferredLocale!;
 
 const { banner } = Astro.locals;
 const languages = banner.languages;
@@ -16,26 +15,25 @@ const foundLanguage = languages.find((l) => l.lang === locale);
 // const locales = config?.i18n?.locales!;
 // const foundLocale = locales.find(({ path }) => path === locale);
 
-const currentLocale = Astro.currentLocale ?? Astro.preferredLocale!;
-const redirectTo = foundLanguage ? null : `/${currentLocale}${Astro.url.pathname}`;
+const redirectTo = foundLanguage ? null : `/${locale}${Astro.url.pathname}`;
 
 if (redirectTo) {
 	console.log({
+		locale,
+		params: Astro.params,
 		currentLocale: Astro.currentLocale,
 		preferredLocale: Astro.preferredLocale,
-		params: Astro.params,
-		pathname: Astro.url.pathname,
 		// locales,
-		// locale,
 		foundLanguage,
+		pathname: Astro.url.pathname,
 		redirectTo,
 	});
 	// return Astro.redirect("/404");
 	return Astro.redirect(redirectTo);
 }
 
-const pdpUrl = getRelativeLocaleUrl(currentLocale, "/product/nike-air-force-1-07-le-mens/W2288111.html");
-const aboutUrl = getRelativeLocaleUrl(currentLocale, "/about");
+const pdpUrl = `/${locale}/product/nike-air-force-1-07-le-mens/W2288111.html`;
+const aboutUrl = `/about`;
 ---
 
 <Layout title="Welcome to Astro" main-class="p-10">

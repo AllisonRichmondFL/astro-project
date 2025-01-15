@@ -2,8 +2,10 @@
 // import config from "astro.config.mjs";
 const QUERY = "query";
 
+const locale = Astro.params.locale ?? Astro.currentLocale ?? Astro.preferredLocale!;
+
 const defaultValue = Astro.url.searchParams.get(QUERY);
-const action = `/${Astro.params.locale}/search`; // undefined; //
+const action = `/${locale}/search`; // undefined; //
 const method = undefined; // "POST"; //
 
 // const { banner } = Astro.locals;
