@@ -1,13 +1,12 @@
 ---
 // import config from "astro.config.mjs";
-// import { getBannerFromAstro } from "@BANNER/banner.configs";
 const QUERY = "query";
 
 const defaultValue = Astro.url.searchParams.get(QUERY);
 const action = `/${Astro.params.locale}/search`; // undefined; //
 const method = undefined; // "POST"; //
 
-// const banner = getBannerFromAstro(Astro);
+// const { banner } = Astro.locals;
 
 // const allLocales = config?.i18n?.locales!;
 // const languages = banner.languages;

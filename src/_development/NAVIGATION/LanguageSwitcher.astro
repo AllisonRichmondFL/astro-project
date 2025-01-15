@@ -8,7 +8,7 @@ const LOCALE = "locale";
 // const action = undefined; // `/${Astro.currentLocale}/`;
 // const method = undefined; // "POST";
 
-const banner = getBannerFromAstro(Astro);
+const { banner } = Astro.locals;
 
 const languages = banner.languages;
 const locale = Astro.params.locale ?? Astro.currentLocale ?? Astro.preferredLocale!;

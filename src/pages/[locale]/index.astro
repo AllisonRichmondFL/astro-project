@@ -5,12 +5,11 @@ import Card from "@components/Card.astro";
 import MyComponent from "@components/MyComponent.astro";
 import ViewCounter from "@components/ViewCounter.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { getBannerFromAstro } from "@BANNER/banner.configs";
 import ToggleMiniCart from "@NAVIGATION/ToggleMiniCart";
 
 const locale = Astro.params.locale;
 
-const banner = getBannerFromAstro(Astro);
+const { banner } = Astro.locals;
 const languages = banner.languages;
 const foundLanguage = languages.find((l) => l.lang === locale);
 

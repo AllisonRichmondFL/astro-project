@@ -1,7 +1,5 @@
 ---
-import { getBannerFromAstro } from "@BANNER/banner.configs.ts";
-
-const banner = getBannerFromAstro(Astro);
+const { banner } = Astro.locals;
 
 interface Props {
 	height?: number;

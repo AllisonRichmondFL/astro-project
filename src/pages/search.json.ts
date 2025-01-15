@@ -1,10 +1,9 @@
-import { getBannerFromAstro } from "@BANNER/banner.configs";
 import { objectToParams } from "@utils/search";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async (ctx) => {
 	const { searchParams } = ctx.url;
-	const banner = getBannerFromAstro(ctx);
+	const { banner } = ctx.locals;
 
 	const useConstructorSearch = true; // false; //
 	const version = searchParams.get("version") || (useConstructorSearch ? "v3" : "v2");
