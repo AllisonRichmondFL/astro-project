@@ -1,12 +1,11 @@
-import clsx from "clsx";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
-export default function DropdownTrigger({ children, open }: React.PropsWithChildren<{ open?: boolean }>) {
+export default function DropdownTrigger({ children }: React.PropsWithChildren<{}>) {
 	return (
-		<DropdownMenu.Trigger className="flex gap-1.5 items-center py-1 px-1.5 text-sm rounded text-inherit hover:bg-neutral-100 hover:no-underline aria-expanded:bg-neutral-100">
-			{children}{" "}
+		<DropdownMenu.Trigger className="flex gap-1.5 items-center py-1 px-1.5 rounded text-inherit hover:bg-neutral-100 hover:no-underline aria-expanded:bg-neutral-100 group">
+			<span className="text-xs">{children}</span>{" "}
 			<svg
-				className={clsx("transition-transform duration-300", { "rotate-180": open })}
+				className="transition-transform duration-300 group-aria-expanded:rotate-180"
 				width="11"
 				height="11"
 				viewBox="0 0 24 24"

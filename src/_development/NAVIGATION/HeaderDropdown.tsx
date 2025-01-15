@@ -12,7 +12,7 @@ export default function HeaderDropdown({
 
 	return (
 		<DropdownMenu.Root onOpenChange={setOpen}>
-			<DropdownTrigger open={isOpen}>{trigger}</DropdownTrigger>
+			<DropdownTrigger>{trigger}</DropdownTrigger>
 
 			<DropdownMenu.Portal>
 				<DropdownMenu.Content
