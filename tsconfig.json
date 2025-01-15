@@ -7,6 +7,7 @@
 			"@layouts/*": ["src/layouts/*"],
 			"@BANNER/*": ["src/_foundation/BANNER/*"],
 			"@GLOBAL/*": ["src/_foundation/GLOBAL/*"],
+			"@BAG/*": ["src/_development/BAG/*"],
 			"@LOYALTY/*": ["src/_development/LOYALTY/*"],
 			"@NAVIGATION/*": ["src/_development/NAVIGATION/*"],
 			"@PRODUCT/*": ["src/_development/PRODUCT/*"],

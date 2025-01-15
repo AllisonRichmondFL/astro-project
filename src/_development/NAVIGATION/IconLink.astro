@@ -1,0 +1,10 @@
+---
+interface Props {
+	emoji?: string;
+	label: string;
+	url: string;
+}
+const { emoji, label, url } = Astro.props;
+---
+
+<a href={url} class="inline-block py-1 px-2 bg-neutral-100 text-inherit"><span aria-label={label}>{emoji}</span></a>

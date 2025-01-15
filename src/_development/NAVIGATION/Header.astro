@@ -4,11 +4,14 @@ import { getBannerFromAstro } from "@BANNER/banner.configs";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import SearchForm from "@SEARCH/SearchForm.astro";
+import MiniCartTrigger from "@NAVIGATION/MiniCartTrigger";
+import IconLink from "./IconLink.astro";
 
 const banner = getBannerFromAstro(Astro);
 const locale = Astro.currentLocale ?? Astro.preferredLocale!;
 const homeUrl = getRelativeLocaleUrl(locale, "/");
 const cartUrl = getRelativeLocaleUrl(locale, "/cart");
+const favesUrl = getRelativeLocaleUrl(locale, "/account/favorites");
 ---
 
 <header class="">
@@ -21,10 +24,14 @@ const cartUrl = getRelativeLocaleUrl(locale, "/cart");
 
 		<SearchForm />
 
-		<div class="flex gap-4 items-center">
+		<div class="flex gap-2 items-center">
 			<LanguageSwitcher />
 
-			<a href={cartUrl} class="inline-block py-1 px-2 bg-neutral-100 text-inherit">Cart</a>
+			<IconLink emoji="❤️" label="Favorites" url={favesUrl} />
+
+			<MiniCartTrigger client:idle>
+				<IconLink emoji="🛒" label="Cart" url={cartUrl} />
+			</MiniCartTrigger>
 		</div>
 	</div>
 	<!-- <HeaderNav /> -->
