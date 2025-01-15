@@ -2,6 +2,14 @@
 export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
+		screens: {
+			xs: '320px', //	  mobile min
+			sm: '600px', //	  tablet portrait
+			md: '900px', //	  tablet landscape
+			lg: '1200px', //  desktop
+			max: '1300px', // max width?
+			xl: '1440px', //   max width?
+		},
 		extend: {
 			backgroundImage: {
 				"blue-purple-gradient":

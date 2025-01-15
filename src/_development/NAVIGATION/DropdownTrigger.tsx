@@ -6,8 +6,8 @@ export default function DropdownTrigger({ children }: React.PropsWithChildren<{}
 			<span className="text-xs">{children}</span>{" "}
 			<svg
 				className="transition-transform duration-300 group-aria-expanded:rotate-180"
-				width="11"
-				height="11"
+				width="10"
+				height="10"
 				viewBox="0 0 24 24"
 				xmlns="http://www.w3.org/2000/svg"
 			>

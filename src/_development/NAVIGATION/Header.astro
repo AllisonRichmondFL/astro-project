@@ -15,23 +15,33 @@ const cartUrl = getRelativeLocaleUrl(locale, "/cart");
 const favesUrl = getRelativeLocaleUrl(locale, "/account/favorites");
 ---
 
-<header class="">
-	<div class="flex gap-4 items-center justify-between px-4 py-2 border-b border-b-neutral-500 bg-white text-black">
+<header class="bg-white text-black border-b border-b-neutral-500/30">
+	<div class="max-w-screen-xl mx-auto flex gap-4 items-center justify-between px-4 py-2">
 		<p data-id="Logo" class="">
 			<a href={homeUrl}> <Logo /></a>
 		</p>
 
 		<SearchForm />
 
-		<div class="flex gap-2 items-center">
+		<div class="flex gap-4 items-center">
 			<LanguageSwitcher />
 
-			<IconLink emoji="❤️" label="Favorites" url={favesUrl} />
-
-			<MiniCartTrigger client:idle>
-				<IconLink emoji="🛒" label="Cart" url={cartUrl} />
-			</MiniCartTrigger>
+			<LanguageSwitcher />
 		</div>
 	</div>
-	<!-- <HeaderNav /> -->
+	<div data-id="Header-Desktop-Ribbon2" class="border-t border-neutral-500/20">
+		<div class="max-w-screen-xl mx-auto flex gap-4 items-center justify-between px-4 py-2">
+			<div class="h-8 mx-auto">
+				<!-- <HeaderNav /> -->
+			</div>
+
+			<div class="ml-auto flex gap-4 items-center" data-id="Header-Desktop-Icons">
+				<IconLink emoji="❤️" label="Favorites" url={favesUrl} />
+
+				<MiniCartTrigger client:idle>
+					<IconLink emoji="🛒" label="Cart" url={cartUrl} />
+				</MiniCartTrigger>
+			</div>
+		</div>
+	</div>
 </header>
