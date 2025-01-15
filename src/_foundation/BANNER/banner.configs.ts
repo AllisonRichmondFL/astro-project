@@ -15,8 +15,6 @@ export const banners = {
 		siteId: "CS",
 		host: "champssports.com",
 		name: "Champs Sports",
-		// countryIso: "US" as CountryCode,
-		// languages: [LANG["en-US"]],
 		...getGeoConfigs("US"),
 	},
 	FL: {
@@ -24,8 +22,6 @@ export const banners = {
 		siteId: "FL",
 		host: "footlocker.com",
 		name: "Foot Locker",
-		// countryIso: "US" as CountryCode,
-		// languages: [LANG["en-US"]],
 		...getGeoConfigs("US"),
 	},
 	FLCA: {
@@ -33,8 +29,6 @@ export const banners = {
 		siteId: "FLCA",
 		host: "footlocker.ca",
 		name: "Foot Locker Canada",
-		// countryIso: "CA" as CountryCode,
-		// languages: [LANG["en-CA"], LANG["fr-CA"]],
 		...getGeoConfigs("CA"),
 	},
 	KFL: {
@@ -42,9 +36,23 @@ export const banners = {
 		siteId: "KFL",
 		host: "kidsfootlocker.com",
 		name: "Kids Foot Locker",
-		// countryIso: "US" as CountryCode,
-		// languages: [LANG["en-US"]],
 		...getGeoConfigs("US"),
+	},
+	// EMEA //
+	FLLU: {
+		bannerType: "FL" as BannerBrandId,
+		siteId: "FLLU",
+		host: "footlocker.lu",
+		name: "Foot Locker Luxembourg",
+		...getGeoConfigs("LU"),
+	},
+	// APAC //
+	FLAU: {
+		bannerType: "FL" as BannerBrandId,
+		siteId: "FLAU",
+		host: "footlocker.com.au",
+		name: "Foot Locker Australia",
+		...getGeoConfigs("AU"),
 	},
 };
 

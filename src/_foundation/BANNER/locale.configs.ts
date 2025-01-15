@@ -81,7 +81,7 @@ function configure(countryIso: CountryCode, region: Region, locales: Locale[]) {
 
 const GEO = {
 	// AT: // Austria
-	// AU: configure("AU", "APAC", ["en-GB"]), // Australia
+	AU: configure("AU", "APAC", ["en-GB"]), // Australia
 	BE: configure("BE", "EMEA", ["en-GB", "fr-FR", "nl-NL"]), // Belgium
 	CA: configure("CA", "NA", ["en-CA", "fr-CA"]), // Canada
 	// CZ: // Czech Republic
@@ -96,7 +96,7 @@ const GEO = {
 	IT: configure("IT", "EMEA", ["en-GB", "it-IT"]), // Italy
 	JP: configure("JP", "APAC", ["en-GB", "ja-JP"]), // Japan
 	KR: configure("KR", "APAC", ["en-GB", "ko-KR"]), // Korea
-	// LU: // Luxembourg
+	LU: configure("LU", "EMEA", ["en-GB", "fr-FR", "de-DE"]), // Luxembourg
 	// MO: // Macau
 	// MY: // Malaysia
 	NL: configure("NL", "EMEA", ["en-GB", "nl-NL"]), // Netherlands
@@ -164,7 +164,7 @@ export function getGeoConfigs(countryIso: CountryCode) {
 
 export type CountryCode =
 	// | "AT" // Austria
-	// | "AU" // Australia
+	| "AU" // Australia
 	| "BE" // Belgium
 	| "CA" // Canada
 	// | "CZ" // Czech Republic
@@ -179,7 +179,7 @@ export type CountryCode =
 	| "IT" // Italy
 	| "JP" // Japan
 	| "KR" // Korea
-	// | "LU" // Luxembourg
+	| "LU" // Luxembourg
 	// | "MO" // Macau
 	// | "MY" // Malaysia
 	| "NL" // Netherlands

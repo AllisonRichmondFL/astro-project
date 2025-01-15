@@ -9,6 +9,16 @@ if (searchParam) console.log("⛳️ banner:", banner.siteId);
 const action = undefined; // `/${Astro.currentLocale}/`;
 const method = undefined; // "POST";
 
+type Banner = typeof banners.FL;
+
+const bannerGroups = Object.values(banners).reduce(
+	(all, b) => {
+		all[b.region].push(b);
+		return all;
+	},
+	{ NA: [] as Banner[], EMEA: [] as Banner[], APAC: [] as Banner[] }
+);
+
 /** with <form method="POST" /> */
 // if (Astro.request.method === "POST") {
 // 	try {
@@ -50,10 +60,14 @@ const method = undefined; // "POST";
 			class="inline-block p-1 font-inherit bg-neutral-500/40 text-inherit"
 		>
 			{
-				Object.values(banners).map(({ host, siteId }) => (
-					<option value={siteId} selected={siteId === banner.siteId}>
-						{host}
-					</option>
+				Object.entries(bannerGroups).map(([region, banners]) => (
+					<optgroup label={region}>
+						{banners.map(({ host, siteId }) => (
+							<option value={siteId} selected={siteId === banner.siteId}>
+								{host}
+							</option>
+						))}
+					</optgroup>
 				))
 			}
 		</select>
