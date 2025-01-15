@@ -1,0 +1,28 @@
+---
+interface Props extends astroHTML.JSX.ImgHTMLAttributes {
+	alt: string;
+	// dim: number;
+	src?: string;
+	sku?: string;
+	height: number;
+	width: number;
+}
+const { alt, sku, src, height, width, ...rest } = Astro.props;
+
+const fileSrc = src || (sku && `https://images.footlocker.com/is/image/EBFL2/${sku}`)!;
+
+function setImageDimensions(url: string, width = 200, height = width) {
+	if (!url || typeof url !== "string") return "";
+	try {
+		const imageUrl = new URL(url);
+		imageUrl.searchParams.set("wid", width.toString());
+		imageUrl.searchParams.set("hei", height.toString());
+		return imageUrl.toString();
+	} catch (err) {
+		console.error(err);
+		return url;
+	}
+}
+---
+
+<img src={setImageDimensions(fileSrc, width, height)} alt={alt} height={height} width={width} {...rest} />
