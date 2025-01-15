@@ -1,7 +1,7 @@
 ---
-import type { Footer, FooterResponse } from "src/pages/api/footer.json";
+import type { Footer } from "src/pages/footer.json";
 
-const route = new URL(`/api/footer.json`, Astro.url);
+const route = new URL(`/footer.json`, Astro.url);
 
 const results: Footer = await fetch(route).then((r) => r.json());
 
