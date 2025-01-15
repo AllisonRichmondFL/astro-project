@@ -1,7 +1,7 @@
 import React from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import HeaderDropdown from "./HeaderDropdown";
-import { getLanguageName, type Language } from "@BANNER/locale.configs";
+import { getLanguageName } from "@BANNER/locale.configs";
 
 export default function LanguageDropdown({
 	children,

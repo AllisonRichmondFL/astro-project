@@ -1,4 +1,4 @@
-import { getGeoConfigs, type CountryCode } from "@BANNER/locale.configs";
+import { getGeoConfigs } from "@BANNER/locale.configs";
 import type { APIContext, AstroGlobal } from "astro";
 
 /**
@@ -60,7 +60,7 @@ export const BANNER_DEFAULT = "FL";
 export const BANNER_COOKIE = "banner";
 export const SITE_ID_COOKIE = "siteId";
 
-export function getBannerFromId(id: string | undefined): typeof banners.FL {
+export function getBannerFromId(id: string | undefined): Banner {
 	return banners[id as keyof typeof banners] || banners[BANNER_DEFAULT];
 }
 
@@ -126,11 +126,3 @@ export function setBannerFromAstro({ cookies, url }: Pick<AstroGlobal, "cookies"
 
 	return banner;
 }
-
-// TYPES //
-
-const bannerBrandIds = ["CS", "FL", "KFL"] as const;
-
-export type BannerBrandId = (typeof bannerBrandIds)[number];
-
-export type BannerSiteId = "CS" | "CSCA" | "FL" | "KFL" | `${"FL"}${CountryCode}`;

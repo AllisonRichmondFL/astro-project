@@ -9,8 +9,6 @@ if (searchParam) console.log("⛳️ banner:", banner.siteId);
 const action = undefined; // `/${Astro.currentLocale}/`;
 const method = undefined; // "POST";
 
-type Banner = typeof banners.FL;
-
 const bannerGroups = Object.values(banners).reduce(
 	(all, b) => {
 		all[b.region].push(b);

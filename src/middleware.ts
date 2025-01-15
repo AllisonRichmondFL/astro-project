@@ -4,6 +4,7 @@ import { defineMiddleware, sequence } from "astro:middleware";
 const bannerDetection = defineMiddleware(async (context, next) => {
 	const banner = setBannerFromAstro(context);
 	console.log("🏁 bannerDetection:", banner.siteId);
+	context.locals.banner = banner;
 	return next();
 });
 

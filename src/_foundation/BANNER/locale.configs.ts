@@ -1,11 +1,5 @@
 const COUNTRY_DEFAULT: CountryCode = "US";
 
-export interface Language {
-	lang: LanguageKey;
-	locale: Locale;
-	acceptLanguage: string;
-}
-
 export const LANG: Record<Locale, Language> = {
 	"de-DE": {
 		lang: "de",
@@ -159,54 +153,3 @@ export function getLangCountryFromLocale(locale: Locale) {
 export function getGeoConfigs(countryIso: CountryCode) {
 	return (countryIso && GEO[countryIso]) || GEO[COUNTRY_DEFAULT];
 }
-
-// TYPES //
-
-export type CountryCode =
-	// | "AT" // Austria
-	| "AU" // Australia
-	| "BE" // Belgium
-	| "CA" // Canada
-	// | "CZ" // Czech Republic
-	| "DE" // Germany (Deutschland)
-	// | "DK" // Denmark
-	| "ES" // Spain (España)
-	| "FR" // France
-	// | "GR" // Greece
-	// | "HK" // Hong Kong
-	// | "HU" // Hungary
-	// | "IE" // Ireland
-	| "IT" // Italy
-	| "JP" // Japan
-	| "KR" // Korea
-	| "LU" // Luxembourg
-	// | "MO" // Macau
-	// | "MY" // Malaysia
-	| "NL" // Netherlands
-	// | "NO" // Norway
-	// | "NZ" // New Zealand
-	// | "PL" // Poland
-	// | "PT" // Portugal
-	// | "SE" // Sweden
-	// | "SG" // Singapore
-	| "TW" // Taiwan
-	| "UK" // United Kingdom
-	| "US"; // United States
-
-export type Region = "NA" | "EMEA" | "APAC";
-
-export type LanguageKey = "de" | "en" | "es" | "fr" | "it" | "ja" | "ko" | "nl" | "zh";
-// export type Locale = `${LanguageKey}-${CountryCode}`;
-export type Locale =
-	| "de-DE"
-	| "en-CA"
-	| "en-GB"
-	| "es-ES"
-	| "en-US"
-	| "fr-CA"
-	| "fr-FR"
-	| "it-IT"
-	| "ja-JP"
-	| "ko-KR"
-	| "nl-NL"
-	| "zh-TW";
