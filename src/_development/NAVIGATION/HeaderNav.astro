@@ -1,18 +1,18 @@
 ---
-import type { HeaderSection } from "src/pages/api/header.json";
+import type { Results } from "src/pages/header.json";
 import HeaderNavItem from "./HeaderNavItem.astro";
 
-const route = `${Astro.url.origin}/api/header.json`;
-const results = await fetch(route).then((r) => r.json());
-const sections: HeaderSection[] = results.sections;
-// console.log("HeaderNav sections:", sections);
+const route = new URL("/header.json", Astro.url);
+const results: Results = await fetch(route).then((r) => r.json());
+
 let selectedMenu = 10; // not a real section
 ---
 
-<nav class="xsticky inset-0 bottom-auto text-center py-1 px-4 bg-black/30" data-id="Header-Desktop-Navbar">
+<nav class="sticky inset-0 bottom-auto text-center py-1 px-4" data-id="Header-Desktop-Navbar">
+	<!-- <pre class="text-tiny">{JSON.stringify(results)}</pre> -->
 	<ul class="flex justify-center gap-4 m-auto">
 		{
-			sections.map((item, i) => (
+			results.sections.map((item, i) => (
 				<li>
 					<HeaderNavItem {...item} isSelected={i === selectedMenu} />
 				</li>

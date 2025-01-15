@@ -45,17 +45,24 @@ export interface Icon {
 	url: string;
 }
 
+export interface Results {
+	components: unknown[];
+	links: HeaderLink[];
+	sections: HeaderSection[];
+}
+
 export async function GET(ctx: APIContext) {
 	const bannerDomain = getBannerDomain(ctx);
-	const lang = ctx.currentLocale || "en";
-	const locale = ctx.currentLocale || "en-US";
+	const locale = ctx.currentLocale || ctx.preferredLocale!;
+	const lang = ctx.params.locale || locale;
 	const route = `${bannerDomain}/api/content/${lang}/header.details.json`;
 
+	console.time(route);
+
 	const headers: HeadersInit = { "x-api-lang": locale };
-	const init: RequestInit = { headers };
 	let resp;
 	try {
-		resp = await fetch(route, init).then((r) => r.json());
+		resp = await fetch(route, { headers }).then((r) => r.json());
 	} catch (err) {
 		console.error(`Error with route ${route}:`, err);
 	}
@@ -70,13 +77,15 @@ export async function GET(ctx: APIContext) {
 		});
 	}
 
+	let data = header;
+
 	const initial = {
 		components: [] as unknown[],
 		links: [] as HeaderLink[],
 		sections: [] as HeaderSection[],
-	};
+	} as Results;
 
-	const data = header.reduce((all, item, i) => {
+	data = header.reduce((all, item, i) => {
 		if (item.zone) {
 			all.components.push(item);
 			return all;
@@ -88,6 +97,8 @@ export async function GET(ctx: APIContext) {
 		}
 		return all;
 	}, initial);
+
+	console.timeEnd(route);
 
 	return new Response(JSON.stringify(data), {
 		status: 200,
