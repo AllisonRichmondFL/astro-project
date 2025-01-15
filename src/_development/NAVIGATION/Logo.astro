@@ -1,0 +1,15 @@
+---
+import { getBannerFromAstro } from "@BANNER/banner.configs.ts";
+
+const banner = getBannerFromAstro(Astro);
+
+interface Props {
+	height?: number;
+}
+
+const { height = 32 } = Astro.props;
+const src = `/${banner.bannerType}/logo.svg`;
+const title = `${banner.name} (home)`;
+---
+
+<img src={src} alt={banner.name} title={title} height={height} class="max-h-8 max-w-[182px]" />

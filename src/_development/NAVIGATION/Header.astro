@@ -4,6 +4,7 @@ import { getBannerFromAstro } from "@BANNER/banner.configs";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import SearchForm from "@SEARCH/SearchForm.astro";
+import Logo from "@NAVIGATION/Logo.astro";
 import MiniCartTrigger from "@NAVIGATION/MiniCartTrigger";
 import IconLink from "./IconLink.astro";
 
@@ -17,9 +18,7 @@ const favesUrl = getRelativeLocaleUrl(locale, "/account/favorites");
 <header class="">
 	<div class="flex gap-4 items-center justify-between px-4 py-2 border-b border-b-neutral-500 bg-white text-black">
 		<p data-id="Logo" class="">
-			<a href={homeUrl} class="text-inherit">
-				<img src={`/${banner.bannerType}/logo.svg`} alt={banner.name} title={`${banner.name} (home)`} height="30" />
-			</a>
+			<a href={homeUrl}> <Logo /></a>
 		</p>
 
 		<SearchForm />
