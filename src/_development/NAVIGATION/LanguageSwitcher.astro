@@ -1,7 +1,7 @@
 ---
 import config from "astro.config.mjs";
 import { banners, getBannerFromAstro } from "@BANNER/banner.configs";
-import { getLanguageName } from "@BANNER/locale.configs";
+import { getLanguageName, type Locale } from "@BANNER/locale.configs";
 const LOCALE = "locale";
 
 const action = undefined; // `/${Astro.currentLocale}/`;
@@ -11,7 +11,7 @@ const banner = getBannerFromAstro(Astro);
 
 const allLocales = config?.i18n?.locales!;
 const languages = banner.languages;
-const locale = Astro.currentLocale ?? Astro.preferredLocale!;
+const locale = Astro.params.locale ?? Astro.currentLocale ?? Astro.preferredLocale!;
 
 if (languages.length < 2) {
 	return null;
@@ -39,35 +39,30 @@ if (Astro.request.method === "POST") {
 }
 ---
 
-<div class="flex flex-row items-center gap-6 bg-neutral-100">
-	<!-- <p class="">Current Locale: <code>{Astro.params.locale}</code></p> -->
-	<details class="relative">
-		<summary class="bg-neutral-500/50x py-1">Change locale: <code>{Astro.params.locale}</code></summary>
-		<div class="absolute left-0 right-0 p-2 bg-neutral-800">
+<div class="flex flex-row items-center gap-6">
+	<details class="relative marker:hidden marker:content-none transition-colors hover:bg-neutral-100 py-1 px-2">
+		<summary class="">
+			<span class="text-sm">
+				🌐
+				{getLanguageName(locale as Locale)}
+			</span>
+		</summary>
+		<div class="absolute left-0 right-0 mt-2 p-3 bg-white border border-neutral-200">
 			<ul class="flex flex-col gap-2">
 				{
 					languages.map((language) => (
 						<li value={language.lang}>
-							<a href={`/${language.lang}/`} aria-selected={language.lang === locale} class="aria-selected:underline">
-								{getLanguageName(language.locale)} ({language.lang})
+							<a
+								href={`/${language.lang}/`}
+								aria-selected={language.lang === locale}
+								class="text-inherit aria-selected:underline"
+							>
+								{getLanguageName(language.locale)}
 							</a>
 						</li>
 					))
 				}
 			</ul>
-			<!-- <hr class="my-2" />
-			<em>All locales:</em>
-			<ul class="">
-				{
-					allLocales.map(({ path, codes }) => (
-						<li value={path}>
-							<a href={`/${path}/`} aria-selected={path === locale} class="aria-selected:underline">
-								{getLanguageName(codes[1])} ({path})
-							</a>
-						</li>
-					))
-				}
-			</ul> -->
 		</div>
 	</details>
 	<!-- <form action={action} method={method} class="flex flex-row items-center gap-3">
@@ -87,3 +82,28 @@ if (Astro.request.method === "POST") {
 		>
 	</form> -->
 </div>
+
+<style>
+	summary {
+		position: relative;
+		padding-right: 0.875rem;
+	}
+	summary:after {
+		content: "";
+		display: block;
+		border: 1px solid currentColor;
+		border-width: 1px 1px 0 0;
+		transform: rotate(135deg);
+		width: 8px;
+		height: 8px;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		margin-top: -5px;
+		transition: all 0.2s;
+	}
+	details[open] summary:after {
+		transform: rotate(-45deg);
+		margin-top: -2px;
+	}
+</style>

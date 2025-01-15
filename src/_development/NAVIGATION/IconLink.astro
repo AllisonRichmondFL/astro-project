@@ -7,4 +7,6 @@ interface Props {
 const { emoji, label, url } = Astro.props;
 ---
 
-<a href={url} class="inline-block py-1 px-2 bg-neutral-100 text-inherit"><span aria-label={label}>{emoji}</span></a>
+<a href={url} class="inline-block py-1 px-2 rounded hover:bg-neutral-100 hover:no-underline text-inherit"
+	><span aria-label={label}>{emoji}</span></a
+>

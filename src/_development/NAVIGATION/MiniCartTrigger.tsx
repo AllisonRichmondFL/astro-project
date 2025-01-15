@@ -17,9 +17,9 @@ export default function MiniCartTrigger({
 		setOpen(!isOpen);
 	}
 	function onHover() {
-		setTimeout(() => {
-			setOpen(true);
-		}, 500);
+		// setTimeout(() => {
+		// 	setOpen(true);
+		// }, 1200);
 	}
 
 	React.useEffect(() => {
@@ -37,7 +37,7 @@ export default function MiniCartTrigger({
 				<Popover.Trigger></Popover.Trigger>
 				<Popover.Anchor />
 				<Popover.Portal>
-					<Popover.Content className="flex flex-col gap bg-white text-black shadow-lg outline outline-1 outline-neutral-400/10 mr-2">
+					<Popover.Content className="flex flex-col gap text-black bg-white border border-neutral-200 shadow-lg mr-2">
 						<div className="flex gap-4 justify-between items-center p-2 border-b border-b-neutral-500/20">
 							<p className="text-sm">Added Nike Club Pullover Hoodie to cart</p>
 
