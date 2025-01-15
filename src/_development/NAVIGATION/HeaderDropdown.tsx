@@ -8,10 +8,8 @@ export default function HeaderDropdown({
 	className,
 	trigger,
 }: React.PropsWithChildren<{ className?: string; trigger: React.ReactNode }>) {
-	const [isOpen, setOpen] = React.useState(false);
-
 	return (
-		<DropdownMenu.Root onOpenChange={setOpen}>
+		<DropdownMenu.Root>
 			<DropdownTrigger>{trigger}</DropdownTrigger>
 
 			<DropdownMenu.Portal>

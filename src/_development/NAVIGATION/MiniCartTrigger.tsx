@@ -1,11 +1,11 @@
-import React, { type PropsWithChildren } from "react";
+import React from "react";
 import * as Popover from "@radix-ui/react-popover";
 
 export default function MiniCartTrigger({
 	children,
 	modal,
 	open,
-}: PropsWithChildren<{ modal?: boolean; open?: boolean }>) {
+}: React.PropsWithChildren<{ modal?: boolean; open?: boolean }>) {
 	const [isOpen, setOpen] = React.useState(!!open);
 
 	function handleToggle() {

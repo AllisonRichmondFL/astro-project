@@ -85,7 +85,7 @@ export async function GET(ctx: APIContext) {
 		sections: [] as HeaderSection[],
 	} as Results;
 
-	data = header.reduce((all, item, i) => {
+	data = header.reduce((all, item) => {
 		if (item.zone) {
 			all.components.push(item);
 			return all;

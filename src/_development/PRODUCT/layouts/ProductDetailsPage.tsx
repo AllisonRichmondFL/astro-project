@@ -1,4 +1,4 @@
-import React, { type PropsWithChildren } from "react";
+import React from "react";
 import { createSlot } from "@components/Slot";
 import {
 	AddToCart,
@@ -12,11 +12,7 @@ import {
 import type { ProductDetailsFormatted } from "@PRODUCT/utils";
 import { useSelectedSize } from "@PRODUCT/components/PdpSizes";
 
-export type PdpSlotName =
-	| "aboveAddToCart"
-	| "belowAddToCart"
-	| "paymentMethods"
-	| "shippingMessage";
+export type PdpSlotName = "aboveAddToCart" | "belowAddToCart" | "paymentMethods" | "shippingMessage";
 
 export const { createChildrenSlots, Slot, useSlot } = createSlot<PdpSlotName>();
 
@@ -39,10 +35,7 @@ export function PDP({ colorways, model, sizes, style, slots }: PdpProps) {
 
 					{slots?.paymentMethods}
 
-					<PdpColorways
-						{...{ colorways, model, style }}
-						selectedSize={selectedSize?.size}
-					/>
+					<PdpColorways {...{ colorways, model, style }} selectedSize={selectedSize?.size} />
 
 					<form action="#AddToCart">
 						<PdpSizes handleChange={handleChange} sizes={sizes} style={style} />
@@ -70,10 +63,7 @@ export function PDP({ colorways, model, sizes, style, slots }: PdpProps) {
 	);
 }
 
-export function PdpWithChildren({
-	children,
-	...props
-}: PropsWithChildren<ProductDetailsFormatted>) {
+export function PdpWithChildren({ children, ...props }: React.PropsWithChildren<ProductDetailsFormatted>) {
 	const slots = createChildrenSlots(children);
 	return <PDP {...props} slots={slots} />;
 }

@@ -1,4 +1,4 @@
-import { getBannerDomain, getBannerFromAstro } from "@BANNER/banner.configs";
+import { getBannerFromAstro } from "@BANNER/banner.configs";
 import { objectToParams } from "@utils/search";
 import type { APIRoute } from "astro";
 

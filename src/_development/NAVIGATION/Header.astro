@@ -1,6 +1,5 @@
 ---
-import HeaderNav from "./HeaderNav.astro";
-import { getBannerFromAstro } from "@BANNER/banner.configs";
+// import HeaderNav from "./HeaderNav.astro";
 import AccountLogin from "./AccountLogin.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import SearchForm from "@SEARCH/SearchForm.astro";
@@ -8,7 +7,6 @@ import Logo from "@NAVIGATION/Logo.astro";
 import MiniCartTrigger from "@NAVIGATION/MiniCartTrigger";
 import IconLink from "./IconLink.astro";
 
-const banner = getBannerFromAstro(Astro);
 const locale = Astro.currentLocale ?? Astro.preferredLocale!;
 const homeUrl = `/${locale}/`;
 const cartUrl = `/${locale}/cart`;

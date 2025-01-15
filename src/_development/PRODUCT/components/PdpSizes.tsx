@@ -6,9 +6,7 @@ export function useSelectedSize() {
 	const [selectedSize, setSize] = useState<FormattedPdpSize | undefined>();
 
 	function handleChange(sizeObj: FormattedPdpSize) {
-		return (
-			e: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLButtonElement>
-		) => {
+		return () => {
 			console.log("handleChange", sizeObj);
 			setSize(sizeObj);
 		};
@@ -18,10 +16,7 @@ export function useSelectedSize() {
 
 type HandleChange = ReturnType<typeof useSelectedSize>[1];
 
-export function PdpSizeIndicator({
-	button,
-	size,
-}: Pick<FormattedPdpSize, "size"> & { button?: boolean }) {
+export function PdpSizeIndicator({ button, size }: Pick<FormattedPdpSize, "size"> & { button?: boolean }) {
 	return (
 		<span
 			className={clsx(
@@ -117,11 +112,7 @@ export function PdpSizes({
 	return (
 		<fieldset className="my-4">
 			<legend className="font-semibold mb-1">Select a size</legend>
-			{style.width && (
-				<p className="text-xs font-normal text-neutral-500 mb-2">
-					{style.width}
-				</p>
-			)}
+			{style.width && <p className="text-xs font-normal text-neutral-500 mb-2">{style.width}</p>}
 			<ul className="flex flex-wrap gap-2">
 				{sizes.map((size) => (
 					<li key={size.size} className="block">

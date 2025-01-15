@@ -69,7 +69,7 @@ export function getValidHostname(url: URL) {
 	return banner?.host;
 }
 
-export function getBannerHost({ cookies, site, url }: APIContext) {
+export function getBannerHost({ cookies, url }: APIContext) {
 	const hostname = getValidHostname(url);
 	if (hostname) return hostname;
 

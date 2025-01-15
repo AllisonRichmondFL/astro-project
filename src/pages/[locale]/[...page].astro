@@ -13,8 +13,7 @@ export interface PageResponse {
 }
 
 let page = Astro.params.page;
-const locale = Astro.params.locale;
-const { currentLocale, preferredLocale, preferredLocaleList } = Astro;
+const { currentLocale, preferredLocale } = Astro;
 
 const isApi = page?.includes("api/") && page?.endsWith(".json");
 console.log("Catchall page:", {

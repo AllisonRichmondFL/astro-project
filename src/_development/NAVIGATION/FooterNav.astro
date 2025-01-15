@@ -5,7 +5,8 @@ const route = new URL(`/footer.json`, Astro.url);
 
 const results: Footer = await fetch(route).then((r) => r.json());
 
-const { affiliates, callouts, footerLinks, properties, quickLinks, socialLinks } = results;
+const { footerLinks, quickLinks } = results;
+// const { affiliates, callouts, footerLinks, properties, quickLinks, socialLinks } = results;
 ---
 
 <nav class="flex">
