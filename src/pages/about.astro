@@ -1,4 +1,9 @@
 ---
+export const prerender = true;
+export async function getStaticPaths() {
+	return [];
+}
+
 import Layout from "@layouts/Layout.astro";
 import MyReactComponent from "@components/MyReactComponent";
 import SetHtml from "@components/SetHtml.astro";

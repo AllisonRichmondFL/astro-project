@@ -115,14 +115,28 @@ export function getBannerFromAstro({ cookies, url }: Pick<AstroGlobal, "cookies"
 	return banner;
 }
 
-export function setBannerFromAstro({ cookies, url }: Pick<AstroGlobal, "cookies" | "url">) {
-	let siteId = url.searchParams.get(SITE_ID_COOKIE) || cookies.get(SITE_ID_COOKIE)?.value || BANNER_DEFAULT;
+export function setBannerFromAstro({
+	cookies,
+	isPrerendered,
+	url,
+}: Pick<AstroGlobal, "cookies" | "isPrerendered" | "url">) {
+	const param = url.searchParams.get(SITE_ID_COOKIE);
+
+	const cookie = isPrerendered ? undefined : cookies.get(SITE_ID_COOKIE)?.value;
+
+	let siteId = param || cookie || BANNER_DEFAULT;
 	// console.log("BannerSetForm", Astro.request.method, { siteId });
-	cookies.set(SITE_ID_COOKIE, siteId, { path: "/" });
+
+	if (!isPrerendered && !cookie) {
+		cookies.set(SITE_ID_COOKIE, siteId, { path: "/" });
+	}
 
 	let banner = getBannerFromId(siteId);
-	// console.log("BannerSetForm banner:", banner);
-	cookies.set(BANNER_COOKIE, banner, { path: "/" });
+
+	if (!isPrerendered && !cookies.get(SITE_ID_COOKIE)?.value) {
+		// console.log("BannerSetForm banner:", banner);
+		cookies.set(BANNER_COOKIE, banner, { path: "/" });
+	}
 
 	return banner;
 }
