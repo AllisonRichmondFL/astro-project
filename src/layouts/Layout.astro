@@ -1,5 +1,5 @@
 ---
-// import FooterNav from "@NAVIGATION/FooterNav.astro";
+import Footer from "@NAVIGATION/Footer.astro";
 import BannerSetForm from "@BANNER/BannerSetForm.astro";
 import { getBannerFromAstro } from "@BANNER/banner.configs";
 import Header from "@NAVIGATION/Header.astro";
@@ -27,5 +27,5 @@ const { ["main-class"]: mainClass, ...props } = Astro.props;
 		<slot />
 	</main>
 
-	<!-- <FooterNav /> -->
+	<Footer />
 </Html>

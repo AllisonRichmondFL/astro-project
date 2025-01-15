@@ -63,17 +63,14 @@ export interface SocialLink {
 
 export async function GET(ctx: APIContext) {
 	const bannerDomain = getBannerDomain(ctx);
-	const { currentLocale, site, url } = ctx;
-	console.log("APIContext:", { site, url });
-	const lang = currentLocale || "en";
-	const locale = currentLocale || "en-US";
+	const locale = ctx.currentLocale || ctx.preferredLocale!;
+	const lang = ctx.params.locale || locale;
 	const route = `${bannerDomain}/api/content/${lang}/footer.details.json`;
 
 	const headers: HeadersInit = { "x-api-lang": locale };
-	const init: RequestInit = { headers };
 	let resp;
 	try {
-		resp = await fetch(route, init).then((r) => r.json());
+		resp = await fetch(route, { headers }).then((r) => r.json());
 	} catch (err) {
 		console.error(`Error with route ${route}:`, err);
 	}
