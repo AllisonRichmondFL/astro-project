@@ -2,6 +2,7 @@
 import HeaderNav from "./HeaderNav.astro";
 import { getBannerFromAstro } from "@BANNER/banner.configs";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import AccountLogin from "./AccountLogin.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import SearchForm from "@SEARCH/SearchForm.astro";
 import Logo from "@NAVIGATION/Logo.astro";
@@ -26,7 +27,7 @@ const favesUrl = getRelativeLocaleUrl(locale, "/account/favorites");
 		<div class="flex gap-4 items-center">
 			<LanguageSwitcher />
 
-			<LanguageSwitcher />
+			<AccountLogin />
 		</div>
 	</div>
 	<div data-id="Header-Desktop-Ribbon2" class="border-t border-neutral-500/20">
