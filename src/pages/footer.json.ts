@@ -66,6 +66,8 @@ export async function GET(ctx: APIContext) {
 	const lang = ctx.params.locale || locale;
 	const route = `${bannerDomain}/api/content/${lang}/footer.details.json`;
 
+	// console.time(`${route} ⏰`);
+
 	const headers: HeadersInit = { "x-api-lang": locale };
 	let resp;
 	try {
@@ -89,6 +91,8 @@ export async function GET(ctx: APIContext) {
 		all[key as keyof Footer] = val;
 		return all;
 	}, {} as Footer);
+
+	// console.timeEnd(`${route} ⏰`);
 
 	return new Response(JSON.stringify(data), {
 		status: 200,

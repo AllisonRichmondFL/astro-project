@@ -7,7 +7,7 @@ export async function GET(ctx: APIContext) {
 	const lang = ctx.params.locale || locale;
 	const route = `${bannerDomain}/api/content/${lang}/header.details.json`;
 
-	console.time(route);
+	console.time(`${route} ⏰`);
 
 	const headers: HeadersInit = { "x-api-lang": locale };
 	let resp;
@@ -44,7 +44,7 @@ export async function GET(ctx: APIContext) {
 		return all;
 	}, initial);
 
-	console.timeEnd(route);
+	console.timeEnd(`${route} ⏰`);
 
 	return new Response(JSON.stringify(data), {
 		status: 200,
