@@ -6,12 +6,12 @@ let isAuth = false;
 	!isAuth ? (
 		<button
 			onclick="() => {isAuth = true}"
-			class="text-xs flex gap-1.5 items-center py-1 px-1.5 rounded text-inherit hover:bg-neutral-100 hover:no-underline aria-expanded:bg-neutral-100"
+			class="whitespace-nowrap text-xs flex gap-1.5 items-center py-1 px-1.5 rounded text-inherit hover:bg-neutral-100 hover:no-underline aria-expanded:bg-neutral-100"
 		>
 			🧑‍💼 Sign In | Join FLX
 		</button>
 	) : (
-		<span class="text-xs flex gap-1.5 items-center py-1 px-1.5 rounded text-inherit hover:bg-neutral-100 hover:no-underline aria-expanded:bg-neutral-100">
+		<span class="whitespace-nowrap text-xs flex gap-1.5 items-center py-1 px-1.5 rounded text-inherit hover:bg-neutral-100 hover:no-underline aria-expanded:bg-neutral-100">
 			🧑‍💼 Hi, Allison
 			<svg
 				class="transition-transform duration-300"

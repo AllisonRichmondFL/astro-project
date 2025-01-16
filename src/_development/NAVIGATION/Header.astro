@@ -14,10 +14,8 @@ const favesUrl = `/${locale}/account/favorites`;
 ---
 
 <header class="bg-white text-black border-b border-b-neutral-500/30">
-	<div class="max-w-screen-xl mx-auto flex gap-4 items-center justify-between px-4 py-2">
-		<p data-id="Logo" class="">
-			<a href={homeUrl}> <Logo /></a>
-		</p>
+	<div class="max-w-screen-xl mx-auto px-4 py-2.5 flex gap-8 items-center justify-between">
+		<a href={homeUrl}><Logo /></a>
 
 		<SearchForm />
 
@@ -27,13 +25,14 @@ const favesUrl = `/${locale}/account/favorites`;
 			<AccountLogin />
 		</div>
 	</div>
-	<div data-id="Header-Desktop-Ribbon2" class="border-t border-neutral-500/20">
-		<div class="max-w-screen-xl mx-auto flex gap-4 items-center justify-between px-4 py-2">
-			<div class="h-8 mx-auto">
+	<hr aria-hidden class="border-t border-neutral-500/10" />
+	<div class="max-w-screen-xl mx-auto px-4 py-2">
+		<div class="relative flex gap-4 items-center justify-between">
+			<div class="h-8x mx-auto">
 				<HeaderNav />
 			</div>
 
-			<div class="ml-auto flex gap-4 items-center" data-id="Header-Desktop-Icons">
+			<div class="absolute right-0 flex gap-4 items-center">
 				<IconLink emoji="❤️" label="Favorites" url={favesUrl} />
 
 				<MiniCartTrigger client:idle>

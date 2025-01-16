@@ -2,7 +2,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export default function DropdownTrigger({ children }: React.PropsWithChildren<{}>) {
 	return (
-		<DropdownMenu.Trigger className="flex gap-1.5 items-center py-1 px-1.5 rounded text-inherit hover:bg-neutral-100 hover:no-underline aria-expanded:bg-neutral-100 group">
+		<DropdownMenu.Trigger className="whitespace-nowrap flex gap-1.5 items-center py-1 px-1.5 rounded text-inherit hover:bg-neutral-100 hover:no-underline aria-expanded:bg-neutral-100 group">
 			<span className="text-xs">{children}</span>{" "}
 			<svg
 				className="transition-transform duration-300 group-aria-expanded:rotate-180"
