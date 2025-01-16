@@ -67,7 +67,7 @@ const productImage = product.images?.[0]?.url;
 			`/product/${product.name.replaceAll(" ", "-").toLowerCase()}/${product.sku}.html`
 		)}
 	>
-		<ProductImage src={productImage} sku={product.sku} alt={product.name} height={120} width={120} />
+		<ProductImage src={productImage} sku={product.sku} alt={product.name} height={120} />
 	</a>
 	<h3 class="text-2xl">{name}</h3>
 	<p class="my-2 text-xs">⭐️ {product.reviewRatings.rating} <span>({product.reviewRatings.reviews})</span></p>
@@ -80,16 +80,16 @@ const productImage = product.images?.[0]?.url;
 	<!-- <pre class="text-tiny whitespace-pre-wrap">{JSON.stringify(product, null, 2)}</pre> -->
 	{
 		product.variantOptions?.length && (
-			<ul class="flex gap-2">
+			<ul class="flex flex-wrap gap-2">
 				<li>
 					<button class="border border-neutral-500/50">
-						<ProductImage src={productImage} sku={product.sku} alt={product.name} height={35} width={35} />
+						<ProductImage src={productImage} sku={product.sku} alt={product.name} height={35} />
 					</button>
 				</li>
 				{product.variantOptions.map(({ images, imageSku, name, sku }) => (
 					<li>
 						<button class="border border-neutral-500/50">
-							<ProductImage src={imageSku || images?.[0]?.url} sku={sku} alt={name} height={35} width={35} />
+							<ProductImage src={images?.[0]?.url} sku={imageSku || sku} alt={name} height={35} />
 						</button>
 					</li>
 				))}
