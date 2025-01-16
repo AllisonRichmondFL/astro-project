@@ -52,10 +52,14 @@ const headerData = defineMiddleware(async (context, next) => {
 		// 	href: context.url.href,
 		// 	// request: context.request,
 		// });
-		const route = new URL("/header.json", context.url);
-		// console.log("🐕 fetch headerData?", { pathname });
-		const header = await fetch(route).then((r) => r.json());
-		context.locals.header = header;
+		try {
+			const route = new URL("/header.json", context.url);
+			// console.log("🐕 fetch headerData?", { pathname });
+			const header = await fetch(route).then((r) => r.json());
+			context.locals.header = header;
+		} catch (err) {
+			console.error(err);
+		}
 	}
 	return next();
 });
