@@ -1,9 +1,6 @@
 import clsx from "clsx";
-import { ProductImage } from "@PRODUCT/components/PdpHeader";
-import type {
-	FormattedPdpModel,
-	ProductDetailsFormatted,
-} from "@PRODUCT/utils";
+import ProductImage from "@PRODUCT/components/ProductImage";
+import type { FormattedPdpModel, ProductDetailsFormatted } from "@PRODUCT/utils";
 
 export function PdpColorwayLink({
 	model,
@@ -18,9 +15,7 @@ export function PdpColorwayLink({
 }) {
 	const { color, sku } = variant;
 	const isSelected = selectedSku === sku;
-	const isActive =
-		!variants?.length ||
-		variants.some((v) => v.inventory.inventoryAvailable && v.active);
+	const isActive = !variants?.length || variants.some((v) => v.inventory.inventoryAvailable && v.active);
 
 	return (
 		<a
@@ -38,11 +33,7 @@ export function PdpColorwayLink({
 				}
 			)}
 		>
-			<ProductImage
-				alt={`${model.name} - ${model.gender} - ${color}`}
-				sku={sku}
-				width={100}
-			/>
+			<ProductImage alt={`${model.name} - ${model.gender} - ${color}`} sku={sku} height={100} />
 		</a>
 	);
 }

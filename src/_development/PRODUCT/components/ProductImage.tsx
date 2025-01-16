@@ -2,33 +2,36 @@ import clsx from "clsx";
 
 const DEFAULT_WIDTH = 100;
 
-export function getProductImageSrc({ sku, src, ...rest }: ProductImageProps) {
-	const height = rest.height || rest.width || DEFAULT_WIDTH;
-	const width = rest.width || rest.height || DEFAULT_WIDTH;
+export function setImageDimensions(url: string, height = 200, width = height) {
+	if (!url || typeof url !== "string") return "";
+	try {
+		const _height = height ?? width ?? DEFAULT_WIDTH;
+		const _width = width ?? height ?? DEFAULT_WIDTH;
 
-	if (src) {
-		const imgSrc = new URL(src);
-		imgSrc.searchParams.set("wid", width.toString());
-		imgSrc.searchParams.set("hei", height.toString());
+		const imgSrc = new URL(url);
+		imgSrc.searchParams.set("hei", _height.toString());
+		imgSrc.searchParams.set("wid", _width.toString());
 		return imgSrc.toString();
+	} catch (err) {
+		console.error(err);
+		return "";
 	}
-	return `https://images.footlocker.com/is/image/EBFL2/${sku}?wid=${width}&hei=${height}`;
+	// return `https://images.footlocker.com/is/image/EBFL2/${sku}?wid=${width}&hei=${height}`;
 }
 
-export function ProductImage({ className, sku, ...rest }: ProductImageProps) {
-	const src = getProductImageSrc({ sku, ...rest });
-	return (
-		<img
-			{...rest}
-			className={clsx("block w-full h-auto", className)}
-			src={src}
-		/>
-	);
+export default function ProductImage({ className, sku, src, height, width, ...rest }: Props) {
+	const fileSrc = src || (sku && `https://images.footlocker.com/is/image/EBFL2/${sku}`)!;
+
+	const imgSrc = setImageDimensions(fileSrc, height, width);
+	if (!imgSrc) return null;
+
+	return <img {...rest} className={clsx("block w-full h-auto", className)} src={imgSrc} />;
 }
 
-type ProductImageProps = { sku?: string } & React.DetailedHTMLProps<
-	React.ImgHTMLAttributes<HTMLImageElement>,
-	HTMLImageElement
->;
-
-export default ProductImage;
+interface Props extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
+	alt: string;
+	src?: string;
+	sku?: string;
+	height: number;
+	width?: number | undefined;
+}
