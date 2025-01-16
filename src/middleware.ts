@@ -37,29 +37,28 @@ const forceLocale = defineMiddleware(async (context, next) => {
 	return next();
 });
 
-// const validation = defineMiddleware(async (context, next) => {
-// 	console.log("validation request");
-// 	const response = await next();
-
-// 	console.log("middleware", {
-// 		// cookies: headers.get('cookies'),
-// 		// "accept-language": headers.get("accept-language"),
-// 		// "user-agent": headers.get("user-agent"),
-// 		// currentLocale: context.currentLocale,
-// 		// locals: context.locals, // integrations, eg netlify
-// 		// params: context.params,
-// 		// props: context.props,
-// 		// preferredLocale: context.preferredLocale,
-// 		// preferredLocaleList: context.preferredLocaleList,
-// 		// redirect: context.redirect, // func
-// 		// request: context.request,
-// 		// rewrite: context.rewrite, // func
-// 		// site: context.site,
-// 		// url: context.url,
-// 	});
-// 	console.log("validation response");
-// 	return response;
-// });
+const headerData = defineMiddleware(async (context, next) => {
+	const { pathname } = context.url;
+	const extension = pathname.match(/\.[0-9a-z]+$/i)?.[0];
+	const isPage = !extension || extension === "html";
+	// console.log("🐕 fetch headerData?", { pathname, extension, isPage });
+	if (isPage) {
+		// console.log("headerData middleware", {
+		// 	// "accept-language": context.headers.get("accept-language"),
+		// 	// "user-agent": context.headers.get("user-agent"),
+		// 	// locals: context.locals, // integrations, eg netlify
+		// 	params: context.params,
+		// 	props: context.props,
+		// 	href: context.url.href,
+		// 	// request: context.request,
+		// });
+		const route = new URL("/header.json", context.url);
+		// console.log("🐕 fetch headerData?", { pathname });
+		const header = await fetch(route).then((r) => r.json());
+		context.locals.header = header;
+	}
+	return next();
+});
 
 // const auth = defineMiddleware(async (context, next) => {
 // 	console.log("auth request");
@@ -107,5 +106,6 @@ const forceLocale = defineMiddleware(async (context, next) => {
 export const onRequest = sequence(
 	// greeting
 	bannerDetection,
-	forceLocale
+	forceLocale,
+	headerData
 );

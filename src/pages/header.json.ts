@@ -1,56 +1,6 @@
 import type { APIContext } from "astro";
 import { getBannerDomain } from "@BANNER/banner.configs";
 
-export interface HeaderResponse {
-	header: Header[];
-}
-
-export interface Header {
-	headerSection?: HeaderSection[];
-	headerLinks?: HeaderLink[];
-}
-
-export interface HeaderLink {
-	name: string;
-	linkPath: string;
-}
-
-export interface HeaderSection {
-	name: string;
-	categories: Category[];
-	linkPath?: string;
-}
-
-export interface Category {
-	name: string;
-	hidden: boolean;
-	expandByDefault?: boolean;
-	type: "icons" | "list" | "promoLinks";
-	links: Link[];
-	"sub-categories": unknown[];
-	style?: string;
-	linkPath?: string;
-}
-
-export interface Link {
-	shopAll?: boolean;
-	text?: string;
-	url: string;
-	icon?: Icon;
-	image?: string;
-}
-
-export interface Icon {
-	name: string;
-	url: string;
-}
-
-export interface Results {
-	components: unknown[];
-	links: HeaderLink[];
-	sections: HeaderSection[];
-}
-
 export async function GET(ctx: APIContext) {
 	const bannerDomain = getBannerDomain(ctx);
 	const locale = ctx.currentLocale || ctx.preferredLocale!;
@@ -79,11 +29,7 @@ export async function GET(ctx: APIContext) {
 
 	let data = header;
 
-	const initial = {
-		components: [] as unknown[],
-		links: [] as HeaderLink[],
-		sections: [] as HeaderSection[],
-	} as Results;
+	const initial = { components: [], links: [], sections: [] } as SearchResults;
 
 	data = header.reduce((all, item) => {
 		if (item.zone) {

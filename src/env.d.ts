@@ -1,6 +1,7 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 /// <reference types="./_foundation/BANNER/banner.configs.d.ts" />
+/// <reference types="./pages/header.json.d.ts" />
 
 interface ImportMetaEnv {
 	readonly PUBLIC_BANNER: string;
@@ -15,5 +16,6 @@ declare namespace App {
 	interface Locals {
 		title: string;
 		banner: Banner;
+		header: SearchResults;
 	}
 }
