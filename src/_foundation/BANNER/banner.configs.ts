@@ -116,10 +116,10 @@ export function setBannerFromAstro({
 
 	const cookie = isPrerendered ? undefined : cookies.get(SITE_ID_COOKIE)?.value;
 
-	console.log("setBannerFromAstro", { param, isPrerendered, cookie, url });
+	// console.log("🏁 setBannerFromAstro", { param, isPrerendered, cookie, url });
 
 	let siteId = param || cookie || BANNER_DEFAULT;
-	// console.log("setBannerFromAstro", Astro.request.method, { siteId });
+	// console.log("🏁 setBannerFromAstro", Astro.request.method, { siteId });
 
 	if (!isPrerendered) {
 		cookies.set(SITE_ID_COOKIE, siteId, { path: "/" });

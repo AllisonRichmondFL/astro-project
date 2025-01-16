@@ -3,8 +3,38 @@ import { defineMiddleware, sequence } from "astro:middleware";
 
 const bannerDetection = defineMiddleware(async (context, next) => {
 	const banner = setBannerFromAstro(context);
-	console.log("🏁 bannerDetection:", banner.siteId);
+	// console.log("🏁 bannerDetection:", banner.siteId);
 	context.locals.banner = banner;
+	return next();
+});
+
+const forceLocale = defineMiddleware(async (context, next) => {
+	const locale = context.params.locale;
+	const currentLocale = context.currentLocale ?? context.preferredLocale!;
+
+	const { banner } = context.locals;
+	const { pathname } = context.url;
+	const extension = pathname.match(/\.[0-9a-z]+$/i)?.[0];
+	const isPage = !extension || extension === "html";
+
+	const foundLanguage = banner.languages.find((l) => l.lang === locale);
+
+	console.log("🌐", {
+		pathname,
+		extension,
+		isPage,
+		// locale,
+		currentLocale,
+		foundLanguage,
+	});
+
+	if (isPage && !foundLanguage) {
+		const redirectTo = `/${currentLocale}${pathname}`;
+		console.log({ redirectTo });
+		return context.redirect(redirectTo);
+		// return context.redirect("/404");
+	}
+
 	return next();
 });
 
@@ -77,5 +107,6 @@ const bannerDetection = defineMiddleware(async (context, next) => {
 
 export const onRequest = sequence(
 	// greeting
-	bannerDetection
+	bannerDetection,
+	forceLocale
 );

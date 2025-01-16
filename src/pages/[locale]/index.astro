@@ -7,30 +7,7 @@ import ViewCounter from "@components/ViewCounter.astro";
 import ToggleMiniCart from "@NAVIGATION/ToggleMiniCart";
 
 const locale = Astro.params.locale ?? Astro.currentLocale ?? Astro.preferredLocale!;
-
 const { banner } = Astro.locals;
-const languages = banner.languages;
-const foundLanguage = languages.find((l) => l.lang === locale);
-
-// const locales = config?.i18n?.locales!;
-// const foundLocale = locales.find(({ path }) => path === locale);
-
-const redirectTo = foundLanguage ? null : `/${locale}${Astro.url.pathname}`;
-
-if (redirectTo) {
-	console.log({
-		locale,
-		params: Astro.params,
-		currentLocale: Astro.currentLocale,
-		preferredLocale: Astro.preferredLocale,
-		// locales,
-		foundLanguage,
-		pathname: Astro.url.pathname,
-		redirectTo,
-	});
-	// return Astro.redirect("/404");
-	return Astro.redirect(redirectTo);
-}
 
 const pdpUrl = `/${locale}/product/nike-air-force-1-07-le-mens/W2288111.html`;
 const aboutUrl = `/about`;
