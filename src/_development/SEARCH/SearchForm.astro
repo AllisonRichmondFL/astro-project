@@ -17,15 +17,16 @@ const method = undefined; // "POST"; //
 // if (Astro.request.method === "POST") {
 // 	try {
 // 		const data = await Astro.request.formData();
-// 		const val = data.get(QUERY)?.toString();
-// 		console.log("LanguageSwitcher POST val:", val);
-// 		// if (val) {
-// 		// 	const redirectTo = `/${val}/`;
-// 		// 	console.log("LanguageSwitcher:", { redirectTo });
-// 		// 	Astro.redirect(redirectTo);
-// 		// 	// Astro.cookies.set(QUERY, val, { path: "/" });
-// 		// 	// console.log("BannerSetForm POST:", { siteId }, banner);
-// 		// }
+// 		const query = data.get(QUERY)?.toString();
+// 		const version = data.get("version")?.toString();
+// 		console.log("SearchForm POST:", { query, version });
+// 		if (query) {
+// 			const redirectTo = `/${locale}/search?${QUERY}=${encodeURIComponent(query)}`;
+// 			console.log("SearchForm:", { redirectTo });
+// 			Astro.redirect(redirectTo);
+// 			// Astro.cookies.set(QUERY, val, { path: "/" });
+// 			// console.log("SearchForm POST:", { siteId }, banner);
+// 		}
 // 	} catch (err) {
 // 		if (err instanceof Error) {
 // 			console.error("❌", err.message);
@@ -39,7 +40,7 @@ const method = undefined; // "POST"; //
 	method={method}
 	class="w-full flex flex-row items-center border border-neutral-500/30 rounded transition-colors bg-white hover:bg-neutral-100"
 >
-	<label for={`select_${QUERY}`} class="sr-only">Search</label>
+	<label for={`select_${QUERY}`} class="sr-only">Search:</label>
 	<input
 		id={`select_${QUERY}`}
 		name={QUERY}
@@ -48,5 +49,10 @@ const method = undefined; // "POST"; //
 		value={defaultValue}
 		class="inline-block w-full py-2 px-3 text-sm leading-tight bg-transparent text-inherit outline-offset-1"
 	/>
+	<label for="select_version" class="sr-only">Version:</label>
+	<select name="version" id="select_version" class="text-sm">
+		<option value="v3">v3</option>
+		<option value="v2">v2</option>
+	</select>
 	<button class="inline-block py-2 px-2.5 text-sm leading-tight bg-transparent text-inherit" type="submit">🔍</button>
 </form>
