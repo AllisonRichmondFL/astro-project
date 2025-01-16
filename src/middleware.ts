@@ -19,22 +19,21 @@ const forceLocale = defineMiddleware(async (context, next) => {
 
 	const foundLanguage = banner.languages.find((l) => l.lang === locale);
 
-	console.log("🌐", {
-		pathname,
-		extension,
-		isPage,
-		// locale,
-		currentLocale,
-		foundLanguage,
-	});
+	// console.log("🌐", {
+	// 	pathname,
+	// 	extension,
+	// 	isPage,
+	// 	// locale,
+	// 	currentLocale,
+	// 	foundLanguage,
+	// });
 
 	if (isPage && !foundLanguage) {
 		const redirectTo = `/${currentLocale}${pathname}`;
-		console.log({ redirectTo });
-		return context.redirect(redirectTo);
+		console.log("🌐", { redirectTo });
 		// return context.redirect("/404");
+		return context.redirect(redirectTo);
 	}
-
 	return next();
 });
 
